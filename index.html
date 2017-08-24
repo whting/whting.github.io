@@ -160,6 +160,121 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Elasticsearch-权威指南阅读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/24/Elasticsearch-权威指南阅读/">Elasticsearch: 权威指南阅读</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/24/Elasticsearch-权威指南阅读/" class="archive-article-date">
+  	<time datetime="2017-08-24T08:28:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html" target="_blank" rel="external">Elasticsearch: 权威指南</a></p>
+<h3 id="ES特征"><a href="#ES特征" class="headerlink" title="ES特征"></a>ES特征</h3><p>一个分布式的实时文档存储，每个字段 可以被索引与搜索<br>一个分布式实时分析搜索引擎<br>能胜任上百个服务节点的扩展，并支持 PB 级别的结构化或者非结构化数据<br>RESTful API with JSON over HTTP</p>
+<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><p>映射对应传统数据库的表定义</p>
+<p>####type<br>string 类型域会被认为包含全文。就是说，它们的值在索引前，会通过 一个分析器，针对于这个域的查询在搜索前也会经过一个分析器。</p>
+<p>在5.x版本后text、keyword代表string。区别是text 分词,keyword不分词</p>
+<p>####index<br>index 属性控制怎样索引字符串。它可以是下面三个值：</p>
+<ul>
+<li>analyzed<br>首先分析字符串，然后索引它。换句话说，以全文索引这个域。</li>
+<li>not_analyzed<br>索引这个域，所以它能够被搜索，但索引的是精确值。不会对它进行分析。</li>
+<li>no<br>不索引这个域。这个域不会被搜索到。</li>
+</ul>
+<p>string 域 index 属性默认是 analyzed 。如果我们想映射这个字段为一个精确值，我们需要设置它为 not_analyzed</p>
+<p>####analyze<br>对于 analyzed 字符串域，用 analyzer 属性指定在搜索和索引时使用的分析器。默认， Elasticsearch 使用 standard 分析器， 但你可以指定一个内置的分析器替代它，例如 whitespace 、 simple 和 english</p>
+<h4 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /megacorp/employee/_mapping?pretty</div></pre></td></tr></table></figure>
+<h4 id="创建一个新索引"><a href="#创建一个新索引" class="headerlink" title="创建一个新索引"></a>创建一个新索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">curl -XPUT http://localhost:9200/haoting -d &apos;&#123;</div><div class="line">	&quot;mappings&quot;:&#123;</div><div class="line">		&quot;tweet&quot;:&#123;</div><div class="line">			&quot;properties&quot;:&#123;</div><div class="line">				&quot;tweet&quot;:&#123;</div><div class="line">					&quot;type&quot;:&quot;string&quot;,</div><div class="line">					&quot;analyzer&quot;:&quot;english&quot;</div><div class="line">				&#125;,</div><div class="line">				&quot;name&quot;:&#123;</div><div class="line">					&quot;type&quot;:&quot;string&quot;</div><div class="line">				&#125;,</div><div class="line">				&quot;user_id&quot;:&#123;</div><div class="line">					&quot;type&quot;:&quot;long&quot;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;&apos;</div></pre></td></tr></table></figure>
+<h4 id="更新索引"><a href="#更新索引" class="headerlink" title="更新索引"></a>更新索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">curl -XPUT http://localhost:9200/haoting/_mapping/tweet -d &apos;&#123;</div><div class="line">  &quot;properties&quot; : &#123;</div><div class="line">    &quot;tag&quot; : &#123;</div><div class="line">      &quot;type&quot; :    &quot;string&quot;,</div><div class="line">      &quot;index&quot;:    &quot;not_analyzed&quot;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;&apos;</div></pre></td></tr></table></figure>
+<h4 id="测试映射"><a href="#测试映射" class="headerlink" title="测试映射"></a>测试映射</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">curl -XGET http://localhost:9200/haoting/_analyze -d &apos;&#123;</div><div class="line">	&quot;field&quot;:&quot;tweet&quot;,</div><div class="line">	&quot;text&quot;:&quot;Black-cats&quot;</div><div class="line">&#125;&apos;</div></pre></td></tr></table></figure>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p>####数据准备<br>    无需进行执行管理任务，如创建一个索引或指定每个属性的数据类型之类的，可以直接只索引一个文档。Elasticsearch 默认地完成其他一切，因此所有必需的管理任务都在后台使用默认设置完成。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">curl -PUT http://localhost:9200/megacorp/employee/1\?pretty -d &apos;&#123;</div><div class="line">    &quot;first_name&quot; : &quot;John&quot;,</div><div class="line">    &quot;last_name&quot; :  &quot;Smith&quot;,</div><div class="line">    &quot;age&quot; :        25,</div><div class="line">    &quot;about&quot; :      &quot;I love to go rock climbing&quot;,</div><div class="line">    &quot;interests&quot;: [ &quot;sports&quot;, &quot;music&quot; ]</div><div class="line">&#125;&apos;</div><div class="line"></div><div class="line">PUT /megacorp/employee/2</div><div class="line">&#123;</div><div class="line">    &quot;first_name&quot; :  &quot;Jane&quot;,</div><div class="line">    &quot;last_name&quot; :   &quot;Smith&quot;,</div><div class="line">    &quot;age&quot; :         32,</div><div class="line">    &quot;about&quot; :       &quot;I like to collect rock albums&quot;,</div><div class="line">    &quot;interests&quot;:  [ &quot;music&quot; ]</div><div class="line">&#125;</div><div class="line"></div><div class="line">PUT /megacorp/employee/3</div><div class="line">&#123;</div><div class="line">    &quot;first_name&quot; :  &quot;Douglas&quot;,</div><div class="line">    &quot;last_name&quot; :   &quot;Fir&quot;,</div><div class="line">    &quot;age&quot; :         35,</div><div class="line">    &quot;about&quot;:        &quot;I like to build cabinets&quot;,</div><div class="line">    &quot;interests&quot;:  [ &quot;forestry&quot; ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="检索文档"><a href="#检索文档" class="headerlink" title="检索文档"></a>检索文档</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /megacorp/employee/1</div></pre></td></tr></table></figure>
+<pre><code>同样的，可以使用 DELETE 命令来删除文档，以及使用 HEAD 指令来检查文档是否存在。如果想更新已存在的文档，只需再次 PUT
+</code></pre><h4 id="轻量搜索"><a href="#轻量搜索" class="headerlink" title="轻量搜索"></a>轻量搜索</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /megacorp/employee/_search?q=last_name:Smith</div></pre></td></tr></table></figure>
+<h4 id="查询表达式"><a href="#查询表达式" class="headerlink" title="查询表达式"></a>查询表达式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">POST /megacorp/employee/_search</div><div class="line">&#123;</div><div class="line">    &quot;query&quot; : &#123;</div><div class="line">        &quot;match&quot; : &#123;</div><div class="line">            &quot;last_name&quot; : &quot;Smith&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="重要的查询"><a href="#重要的查询" class="headerlink" title="重要的查询"></a>重要的查询</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;query&quot;:&#123;</div><div class="line">        &quot;XXXX&quot;:&#123;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="match-all"><a href="#match-all" class="headerlink" title="match_all"></a>match_all</h5><p>匹配所有文档。在没有指定查询方式时，它是默认的查询</p>
+<h5 id="match"><a href="#match" class="headerlink" title="match"></a>match</h5><ul>
+<li>如果你在一个全文字段上使用 match 查询，在执行查询前，它将用正确的分析器去分析查询字符串</li>
+<li>如果在一个精确值的字段上使用它， 例如数字、日期、布尔或者一个 not_analyzed 字符串字段，那么它将会精确匹配给定的值</li>
+</ul>
+<h5 id="match-phrase"><a href="#match-phrase" class="headerlink" title="match_phrase"></a>match_phrase</h5><p>短语查询,</p>
+<h5 id="mulit-match"><a href="#mulit-match" class="headerlink" title="mulit_match"></a>mulit_match</h5><p>multi_match 查询可以在多个字段上执行相同的 match 查询：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;multi_match&quot;: &#123;</div><div class="line">        &quot;query&quot;:    &quot;full text search&quot;,</div><div class="line">        &quot;fields&quot;:   [ &quot;title&quot;, &quot;body&quot; ]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="range"><a href="#range" class="headerlink" title="range"></a>range</h5><p>查询找出那些落在指定区间内的数字或者时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;range&quot;: &#123;</div><div class="line">        &quot;age&quot;: &#123;</div><div class="line">            &quot;gte&quot;:  20,</div><div class="line">            &quot;lt&quot;:   30</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="term"><a href="#term" class="headerlink" title="term"></a>term</h5><p>被用于精确值 匹配，这些精确值可能是数字、时间、布尔或者那些 not_analyzed 的字符串<br>对于输入的文本不 分析 ，所以它将给定的值进行精确查询。</p>
+<h5 id="exists和-missing"><a href="#exists和-missing" class="headerlink" title="exists和 missing"></a>exists和 missing</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;exists&quot;:   &#123;</div><div class="line">        &quot;field&quot;:    &quot;title&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h3><ul>
+<li>桶（Buckets）<br>满足特定条件的文档的集合</li>
+<li>指标（Metrics）<br>对桶内的文档进行统计计算<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SELECT COUNT(color)</div><div class="line">FROM table</div><div class="line">GROUP BY color</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>COUNT(color) 相当于指标。<br>GROUP BY color 相当于桶</p>
+<p>桶在概念上类似于 SQL 的分组（GROUP BY），而指标则类似于 COUNT() 、 SUM() 、 MAX() 等统计方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">curl -XGET http://localhost:9200/megacorp/employee/_search?pretty -d &apos;&#123;</div><div class="line"></div><div class="line">	&quot;size&quot;:0,</div><div class="line">	&quot;aggs&quot;:&#123;</div><div class="line">		&quot;name_count&quot;: &#123;</div><div class="line">	        &quot;terms&quot;:&#123;</div><div class="line">	        	&quot;field&quot;:&quot;last_name.keyword&quot;</div><div class="line">	        &#125;,</div><div class="line">	        &quot;aggs&quot;:&#123;</div><div class="line">	        	&quot;avg_age&quot;:&#123;</div><div class="line">	        		&quot;avg&quot;:&#123;</div><div class="line">	        			&quot;field&quot;:&quot;age&quot;</div><div class="line">	        		&#125;</div><div class="line">	        	&#125;</div><div class="line">	        &#125;</div><div class="line">    	&#125;</div><div class="line">	&#125;</div><div class="line">&#125;&apos;</div></pre></td></tr></table></figure>
+<p>记忆方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&quot;aggs&quot;:&#123;</div><div class="line">    &quot;别名&quot;:&#123;</div><div class="line">        &quot;桶操作查询&quot;:&#123;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    &quot;嵌套聚合(aggs)&quot;:&#123;</div><div class="line">        &quot;别名&quot;:&#123;</div><div class="line">            &quot;指标方式&quot;:&#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Elasticsearch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/24/Elasticsearch-权威指南阅读/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Guava-Cache" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -636,6 +751,14 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">对象池</a>
               </li>
              
@@ -649,10 +772,6 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">缓存</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
