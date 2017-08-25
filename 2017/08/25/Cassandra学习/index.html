@@ -17,7 +17,7 @@
 <meta property="og:description" content="Cassandra相较于关系型数据库的优势：快速地执行在海量数据上的读取或写入请求。 Cassandra内部机制在Cassandra中有三个非常重要的数据结构：记录在内存中的Memtable，以及保存在磁盘中的Commit Log和SSTable。Memtable在内存中记录着最近所做的修改，而SSTable则在磁盘上记录着Cassandra所承载的绝大部分数据。在SSTable内部记录着一系列根">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/126867/201603/126867-20160320202027224-969190544.png">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/126867/201603/126867-20160320202112490-2023607484.png">
-<meta property="og:updated_time" content="2017-08-25T08:03:33.000Z">
+<meta property="og:updated_time" content="2017-08-25T08:05:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cassandra学习">
 <meta name="twitter:description" content="Cassandra相较于关系型数据库的优势：快速地执行在海量数据上的读取或写入请求。 Cassandra内部机制在Cassandra中有三个非常重要的数据结构：记录在内存中的Memtable，以及保存在磁盘中的Commit Log和SSTable。Memtable在内存中记录着最近所做的修改，而SSTable则在磁盘上记录着Cassandra所承载的绝大部分数据。在SSTable内部记录着一系列根">
@@ -184,10 +184,8 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <p>Cassandra相较于关系型数据库的优势：快速地执行在海量数据上的读取或写入请求。</p>
-<h3 id="Cassandra内部机制"><a href="#Cassandra内部机制" class="headerlink" title="Cassandra内部机制"></a>Cassandra内部机制</h3><p>在Cassandra中有三个非常重要的数据结构：记录在内存中的Memtable，以及保存在磁盘中的Commit Log和SSTable。Memtable在内存中记录着最近所做的修改，而SSTable则在磁盘上记录着Cassandra所承载的绝大部分数据。在SSTable内部记录着一系列根据键排列的一系列键值对。通常情况下，一个Cassandra表会对应着一个Memtable和多个SSTable。除此之外，为了提高对数据进行搜索和访问的速度，Cassandra还允许软件开发人员在特定的列上创建索引。</p>
-<p>　　鉴于数据可能存储于Memtable，也可能已经被持久化到SSTable中，因此Cassandra在读取数据时需要合并从Memtable和SSTable所取得的数据。同时为了提高运行速度，减少不必要的对SSTable的访问，Cassandra提供了一种被称为是Bloom Filter的组成：每个SSTable都有一个Bloom Filter，以用来判断与其关联的SSTable是否包含当前查询所请求的一条或多条数据。如果是，Cassandra将尝试从该SSTable中取出数据；如果不是，Cassandra则会忽略该SSTable，以减少不必要的磁盘访问。</p>
+<h3 id="Cassandra内部机制"><a href="#Cassandra内部机制" class="headerlink" title="Cassandra内部机制"></a>Cassandra内部机制</h3><p>在Cassandra中有三个非常重要的数据结构：记录在内存中的Memtable，以及保存在磁盘中的Commit Log和SSTable。Memtable在内存中记录着最近所做的修改，而SSTable则在磁盘上记录着Cassandra所承载的绝大部分数据。在SSTable内部记录着一系列根据键排列的一系列键值对。通常情况下，一个Cassandra表会对应着一个Memtable和多个SSTable。除此之外，为了提高对数据进行搜索和访问的速度，Cassandra还允许软件开发人员在特定的列上创建索引。<br><a id="more"></a><br>　　鉴于数据可能存储于Memtable，也可能已经被持久化到SSTable中，因此Cassandra在读取数据时需要合并从Memtable和SSTable所取得的数据。同时为了提高运行速度，减少不必要的对SSTable的访问，Cassandra提供了一种被称为是Bloom Filter的组成：每个SSTable都有一个Bloom Filter，以用来判断与其关联的SSTable是否包含当前查询所请求的一条或多条数据。如果是，Cassandra将尝试从该SSTable中取出数据；如果不是，Cassandra则会忽略该SSTable，以减少不必要的磁盘访问。</p>
 <p>在经由Bloom Filter判断出与其关联的SSTable包含了请求所需要的数据之后，Cassandra就会开始尝试从该SSTable中取出数据了。首先，Cassandra会检查Partition Key Cache是否缓存了所要求数据的索引项Index Entry。如果存在，那么Cassandra会直接从Compression Offset Map中查询该数据所在的地址，并从该地址取回所需要的数据；如果Partition Key Cache并没有缓存该Index Entry，那么Cassandra首先会从Partition Summary中找到Index Entry所在的大致位置，并进而从该位置开始搜索Partition Index，以找到该数据的Index Entry。在找到Index Entry之后，Cassandra就可以从Compression Offset Map找到相应的条目，并根据条目中所记录的数据的位移取得所需要的数据：<br><img src="http://images2015.cnblogs.com/blog/126867/201603/126867-20160320202027224-969190544.png" alt="数据读取"></p>
-<a id="more"></a>
 <h3 id="Cassandra的写入流程"><a href="#Cassandra的写入流程" class="headerlink" title="Cassandra的写入流程"></a>Cassandra的写入流程</h3><ul>
 <li><p>写入<br>Cassandra会首先将数据写入到Memtable中，同时在Commit Log的末尾添加该写入所对应的记录。这样在机器断电等异常情况下，Cassandra仍能通过Commit Log来恢复Memtable中的数据。</p>
 </li>
@@ -511,6 +509,10 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Cassandra</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
               </li>
              
@@ -544,10 +546,6 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">drools</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cassandra</a>
               </li>
             
             <div class="clearfix"></div>
