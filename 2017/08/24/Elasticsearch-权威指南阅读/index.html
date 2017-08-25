@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/24/Elasticsearch-权威指南阅读/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Elasticsearch: 权威指南 ES特征 一个分布式的实时文档存储，每个字段 可以被索引与搜索 一个分布式实时分析搜索引擎 能胜任上百个服务节点的扩展，并支持 PB 级别的结构化或者非结构化数据 RESTful API with JSON over HTTP">
-<meta property="og:updated_time" content="2017-08-24T08:31:00.000Z">
+<meta property="og:updated_time" content="2017-08-25T07:56:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Elasticsearch: 权威指南阅读">
 <meta name="twitter:description" content="Elasticsearch: 权威指南 ES特征 一个分布式的实时文档存储，每个字段 可以被索引与搜索 一个分布式实时分析搜索引擎 能胜任上百个服务节点的扩展，并支持 PB 级别的结构化或者非结构化数据 RESTful API with JSON over HTTP">
@@ -189,16 +189,16 @@ var _hmt = _hmt || [];
 </ul>
 <a id="more"></a>
 <h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><p>映射对应传统数据库的表定义</p>
-<p>####type<br>string 类型域会被认为包含全文。就是说，它们的值在索引前，会通过 一个分析器，针对于这个域的查询在搜索前也会经过一个分析器。</p>
+<h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><p>string 类型域会被认为包含全文。就是说，它们的值在索引前，会通过 一个分析器，针对于这个域的查询在搜索前也会经过一个分析器。</p>
 <p>在5.x版本后text、keyword代表string。区别是text 分词,keyword不分词</p>
-<p>####index<br>index 属性控制怎样索引字符串。它可以是下面三个值：</p>
+<h4 id="index"><a href="#index" class="headerlink" title="index"></a>index</h4><p>index 属性控制怎样索引字符串。它可以是下面三个值：</p>
 <ul>
 <li>analyzed<br>首先分析字符串，然后索引它。换句话说，以全文索引这个域。</li>
 <li>not_analyzed<br>索引这个域，所以它能够被搜索，但索引的是精确值。不会对它进行分析。</li>
 <li>no<br>不索引这个域。这个域不会被搜索到。</li>
 </ul>
 <p>string 域 index 属性默认是 analyzed 。如果我们想映射这个字段为一个精确值，我们需要设置它为 not_analyzed</p>
-<p>####analyze<br>对于 analyzed 字符串域，用 analyzer 属性指定在搜索和索引时使用的分析器。默认， Elasticsearch 使用 standard 分析器， 但你可以指定一个内置的分析器替代它，例如 whitespace 、 simple 和 english</p>
+<h4 id="analyze"><a href="#analyze" class="headerlink" title="analyze"></a>analyze</h4><p>对于 analyzed 字符串域，用 analyzer 属性指定在搜索和索引时使用的分析器。默认， Elasticsearch 使用 standard 分析器， 但你可以指定一个内置的分析器替代它，例如 whitespace 、 simple 和 english</p>
 <h4 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /megacorp/employee/_mapping?pretty</div></pre></td></tr></table></figure>
 <h4 id="创建一个新索引"><a href="#创建一个新索引" class="headerlink" title="创建一个新索引"></a>创建一个新索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">curl -XPUT http://localhost:9200/haoting -d &apos;&#123;</div><div class="line">	&quot;mappings&quot;:&#123;</div><div class="line">		&quot;tweet&quot;:&#123;</div><div class="line">			&quot;properties&quot;:&#123;</div><div class="line">				&quot;tweet&quot;:&#123;</div><div class="line">					&quot;type&quot;:&quot;string&quot;,</div><div class="line">					&quot;analyzer&quot;:&quot;english&quot;</div><div class="line">				&#125;,</div><div class="line">				&quot;name&quot;:&#123;</div><div class="line">					&quot;type&quot;:&quot;string&quot;</div><div class="line">				&#125;,</div><div class="line">				&quot;user_id&quot;:&#123;</div><div class="line">					&quot;type&quot;:&quot;long&quot;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;&apos;</div></pre></td></tr></table></figure>
 <h4 id="更新索引"><a href="#更新索引" class="headerlink" title="更新索引"></a>更新索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">curl -XPUT http://localhost:9200/haoting/_mapping/tweet -d &apos;&#123;</div><div class="line">  &quot;properties&quot; : &#123;</div><div class="line">    &quot;tag&quot; : &#123;</div><div class="line">      &quot;type&quot; :    &quot;string&quot;,</div><div class="line">      &quot;index&quot;:    &quot;not_analyzed&quot;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;&apos;</div></pre></td></tr></table></figure>
@@ -380,7 +380,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ES特征"><span class="toc-number">1.</span> <span class="toc-text">ES特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#映射"><span class="toc-number">2.</span> <span class="toc-text">映射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看索引"><span class="toc-number">2.1.</span> <span class="toc-text">查看索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建一个新索引"><span class="toc-number">2.2.</span> <span class="toc-text">创建一个新索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新索引"><span class="toc-number">2.3.</span> <span class="toc-text">更新索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试映射"><span class="toc-number">2.4.</span> <span class="toc-text">测试映射</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础"><span class="toc-number">3.</span> <span class="toc-text">基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#检索文档"><span class="toc-number">3.1.</span> <span class="toc-text">检索文档</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#轻量搜索"><span class="toc-number">3.2.</span> <span class="toc-text">轻量搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询表达式"><span class="toc-number">3.3.</span> <span class="toc-text">查询表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重要的查询"><span class="toc-number">3.4.</span> <span class="toc-text">重要的查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#match-all"><span class="toc-number">3.4.1.</span> <span class="toc-text">match_all</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#match"><span class="toc-number">3.4.2.</span> <span class="toc-text">match</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#match-phrase"><span class="toc-number">3.4.3.</span> <span class="toc-text">match_phrase</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#mulit-match"><span class="toc-number">3.4.4.</span> <span class="toc-text">mulit_match</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#range"><span class="toc-number">3.4.5.</span> <span class="toc-text">range</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#term"><span class="toc-number">3.4.6.</span> <span class="toc-text">term</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#exists和-missing"><span class="toc-number">3.4.7.</span> <span class="toc-text">exists和 missing</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聚合"><span class="toc-number">4.</span> <span class="toc-text">聚合</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ES特征"><span class="toc-number">1.</span> <span class="toc-text">ES特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#映射"><span class="toc-number">2.</span> <span class="toc-text">映射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#type"><span class="toc-number">2.1.</span> <span class="toc-text">type</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#index"><span class="toc-number">2.2.</span> <span class="toc-text">index</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#analyze"><span class="toc-number">2.3.</span> <span class="toc-text">analyze</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看索引"><span class="toc-number">2.4.</span> <span class="toc-text">查看索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建一个新索引"><span class="toc-number">2.5.</span> <span class="toc-text">创建一个新索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新索引"><span class="toc-number">2.6.</span> <span class="toc-text">更新索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试映射"><span class="toc-number">2.7.</span> <span class="toc-text">测试映射</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础"><span class="toc-number">3.</span> <span class="toc-text">基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#检索文档"><span class="toc-number">3.1.</span> <span class="toc-text">检索文档</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#轻量搜索"><span class="toc-number">3.2.</span> <span class="toc-text">轻量搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询表达式"><span class="toc-number">3.3.</span> <span class="toc-text">查询表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重要的查询"><span class="toc-number">3.4.</span> <span class="toc-text">重要的查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#match-all"><span class="toc-number">3.4.1.</span> <span class="toc-text">match_all</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#match"><span class="toc-number">3.4.2.</span> <span class="toc-text">match</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#match-phrase"><span class="toc-number">3.4.3.</span> <span class="toc-text">match_phrase</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#mulit-match"><span class="toc-number">3.4.4.</span> <span class="toc-text">mulit_match</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#range"><span class="toc-number">3.4.5.</span> <span class="toc-text">range</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#term"><span class="toc-number">3.4.6.</span> <span class="toc-text">term</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#exists和-missing"><span class="toc-number">3.4.7.</span> <span class="toc-text">exists和 missing</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聚合"><span class="toc-number">4.</span> <span class="toc-text">聚合</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -496,7 +496,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+                <a href="javascript:void(0)" class="js-tag color5">Cassandra</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,11 +504,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">对象池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">GenericObjectPool</a>
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,6 +513,14 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">缓存</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">对象池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">GenericObjectPool</a>
               </li>
              
               <li class="article-tag-list-item">
