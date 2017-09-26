@@ -246,61 +246,7 @@ var _hmt = _hmt || [];
         <h3 id="机器性能特效全开"><a href="#机器性能特效全开" class="headerlink" title="机器性能特效全开"></a>机器性能特效全开</h3><h4 id="用户级别句柄和进程"><a href="#用户级别句柄和进程" class="headerlink" title="用户级别句柄和进程"></a>用户级别句柄和进程</h4><p>vi /etc/security/limits.conf</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*   soft noproc   65535  </div><div class="line">*   hard noproc   65535  </div><div class="line">*   soft nofile   65535  </div><div class="line">*   hard nofile   65535</div></pre></td></tr></table></figure>
 <p>说明：* 代表针对所有用户<br>noproc 是代表最大进程数<br>nofile 是代表最大文件打开数</p>
-<h4 id="系统级别句柄"><a href="#系统级别句柄" class="headerlink" title="系统级别句柄"></a>系统级别句柄</h4><p>sysctl -w fs.file-max 65536<br>或者<br>echo “65536” &gt; /proc/sys/fs/file-max  </p>
-<h4 id="系统级别的进程数"><a href="#系统级别的进程数" class="headerlink" title="系统级别的进程数"></a>系统级别的进程数</h4><p>vi /etc/security/limits.d/20-nproc.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*          soft    nproc     65535</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">查看系统总限制 命令：cat /proc/sys/fs/file-max    </div><div class="line">查看整个系统目前使用的文件句柄数量命令：cat /proc/sys/fs/file-nr   </div><div class="line">查看某个进程开了哪些句柄 ：lsof -p pid    </div><div class="line">某个进程开了几个句柄 ：lsof -p pid |wc -l    </div><div class="line">也可以看到某个目录 /文件被什么进程占用了,显示已打开该目录或文件的所有进程信息 ：lsof path/filename</div></pre></td></tr></table></figure>
-<h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><h4 id="线程连接数"><a href="#线程连接数" class="headerlink" title="线程连接数"></a>线程连接数</h4><p>统计该tomcat进程内的线程个数<br>ps -Lf pid|wc -l</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</div><div class="line">               connectionTimeout=&quot;20000&quot;</div><div class="line">               redirectPort=&quot;8443&quot; /&gt;</div></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>默认值</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>maxThreads</td>
-<td>200</td>
-<td>最大线程数，为线程池最大大小</td>
-</tr>
-<tr>
-<td>maxConnections</td>
-<td>默认为maxThreads</td>
-<td></td>
-</tr>
-<tr>
-<td>acceptCount</td>
-<td>100</td>
-<td>等待线程数</td>
-</tr>
-<tr>
-<td>minSpareThreads</td>
-<td>10</td>
-<td>初始化线程数</td>
-</tr>
-<tr>
-<td>maxKeepAliveRequests</td>
-<td>100</td>
-<td>一条长连接服务的http请求最大数目（超过了关闭之），-1表示不受数目影响。</td>
-</tr>
-</tbody>
-</table>
-<h4 id="内存调优"><a href="#内存调优" class="headerlink" title="内存调优"></a>内存调优</h4><p>在catalina.sh中加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">JAVA_OPTS=-Xms64m -Xmx256m -XX:PermSize=128M -XX:MaxNewSize=256m -</div><div class="line">XX:MaxPermSize=256m</div></pre></td></tr></table></figure></p>
-<h3 id="Nginx调优"><a href="#Nginx调优" class="headerlink" title="Nginx调优"></a>Nginx调优</h3><ul>
-<li><p>worker_processes<br>nginx 进程数，建议按照cpu 数目来指定—-减少线程切换</p>
-</li>
-<li><p>worker_rlimit_nofile<br>nginx 进程打开的最多文件描述符数目</p>
-</li>
-<li><p>worker_connections<br>  每个进程允许的最多连接数，理论上每台nginx 服务器的最大连接数为worker_processes*worker_connections。</p>
-</li>
-<li><p>keepalive_timeout<br>启动长链接</p>
-</li>
-<li><p>keepalive<br>长连接数目</p>
-</li>
-</ul>
-
+        
       
 
       
@@ -1083,23 +1029,15 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Cassandra</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">对象池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">GenericObjectPool</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1111,7 +1049,19 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">性能测试</a>
+                <a href="javascript:void(0)" class="js-tag color4">对象池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">GenericObjectPool</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1123,11 +1073,7 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
+                <a href="javascript:void(0)" class="js-tag color5">性能测试</a>
               </li>
              
               <li class="article-tag-list-item">

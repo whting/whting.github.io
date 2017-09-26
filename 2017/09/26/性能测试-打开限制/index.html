@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>性能测试--打开限制 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="机器性能特效全开用户级别句柄和进程vi /etc/security/limits.conf 1234*   soft noproc   65535  *   hard noproc   65535  *   soft nofile   65535  *   hard nofile   65535 说明：* 代表针对所有用户noproc 是代表最大进程数nofile 是代表最大文件打开数 系统级别句">
+  <meta name="description" content="机器性能特效全开用户级别句柄和进程vi /etc/security/limits.conf 1234*   soft noproc   65535  *   hard noproc   65535  *   soft nofile   65535  *   hard nofile   65535 说明：* 代表针对所有用户noproc 是代表最大进程数nofile 是代表最大文件打开数">
 <meta name="keywords" content="性能测试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="性能测试--打开限制">
 <meta property="og:url" content="http://yoursite.com/2017/09/26/性能测试-打开限制/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="机器性能特效全开用户级别句柄和进程vi /etc/security/limits.conf 1234*   soft noproc   65535  *   hard noproc   65535  *   soft nofile   65535  *   hard nofile   65535 说明：* 代表针对所有用户noproc 是代表最大进程数nofile 是代表最大文件打开数 系统级别句">
-<meta property="og:updated_time" content="2017-09-26T03:29:25.000Z">
+<meta property="og:description" content="机器性能特效全开用户级别句柄和进程vi /etc/security/limits.conf 1234*   soft noproc   65535  *   hard noproc   65535  *   soft nofile   65535  *   hard nofile   65535 说明：* 代表针对所有用户noproc 是代表最大进程数nofile 是代表最大文件打开数">
+<meta property="og:updated_time" content="2017-09-26T03:38:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="性能测试--打开限制">
-<meta name="twitter:description" content="机器性能特效全开用户级别句柄和进程vi /etc/security/limits.conf 1234*   soft noproc   65535  *   hard noproc   65535  *   soft nofile   65535  *   hard nofile   65535 说明：* 代表针对所有用户noproc 是代表最大进程数nofile 是代表最大文件打开数 系统级别句">
+<meta name="twitter:description" content="机器性能特效全开用户级别句柄和进程vi /etc/security/limits.conf 1234*   soft noproc   65535  *   hard noproc   65535  *   soft nofile   65535  *   hard nofile   65535 说明：* 代表针对所有用户noproc 是代表最大进程数nofile 是代表最大文件打开数">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -183,6 +183,7 @@ var _hmt = _hmt || [];
         <h3 id="机器性能特效全开"><a href="#机器性能特效全开" class="headerlink" title="机器性能特效全开"></a>机器性能特效全开</h3><h4 id="用户级别句柄和进程"><a href="#用户级别句柄和进程" class="headerlink" title="用户级别句柄和进程"></a>用户级别句柄和进程</h4><p>vi /etc/security/limits.conf</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*   soft noproc   65535  </div><div class="line">*   hard noproc   65535  </div><div class="line">*   soft nofile   65535  </div><div class="line">*   hard nofile   65535</div></pre></td></tr></table></figure>
 <p>说明：* 代表针对所有用户<br>noproc 是代表最大进程数<br>nofile 是代表最大文件打开数</p>
+<a id="more"></a>
 <h4 id="系统级别句柄"><a href="#系统级别句柄" class="headerlink" title="系统级别句柄"></a>系统级别句柄</h4><p>sysctl -w fs.file-max 65536<br>或者<br>echo “65536” &gt; /proc/sys/fs/file-max  </p>
 <h4 id="系统级别的进程数"><a href="#系统级别的进程数" class="headerlink" title="系统级别的进程数"></a>系统级别的进程数</h4><p>vi /etc/security/limits.d/20-nproc.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*          soft    nproc     65535</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">查看系统总限制 命令：cat /proc/sys/fs/file-max    </div><div class="line">查看整个系统目前使用的文件句柄数量命令：cat /proc/sys/fs/file-nr   </div><div class="line">查看某个进程开了哪些句柄 ：lsof -p pid    </div><div class="line">某个进程开了几个句柄 ：lsof -p pid |wc -l    </div><div class="line">也可以看到某个目录 /文件被什么进程占用了,显示已打开该目录或文件的所有进程信息 ：lsof path/filename</div></pre></td></tr></table></figure>
@@ -505,23 +506,15 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Cassandra</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">对象池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">GenericObjectPool</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,7 +526,19 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">性能测试</a>
+                <a href="javascript:void(0)" class="js-tag color4">对象池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">GenericObjectPool</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,11 +550,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
+                <a href="javascript:void(0)" class="js-tag color5">性能测试</a>
               </li>
              
               <li class="article-tag-list-item">
