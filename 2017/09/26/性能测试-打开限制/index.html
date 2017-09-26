@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 缓存 | Hexo</title>
+  <title>性能测试--打开限制 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="十年磨一剑，不露锋芒">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/缓存/index.html">
+  <meta name="description" content="机器性能特效全开用户级别句柄和进程vi /etc/security/limits.conf 1234*   soft noproc   65535  *   hard noproc   65535  *   soft nofile   65535  *   hard nofile   65535 说明：* 代表针对所有用户noproc 是代表最大进程数nofile 是代表最大文件打开数 系统级别句">
+<meta name="keywords" content="性能测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="性能测试--打开限制">
+<meta property="og:url" content="http://yoursite.com/2017/09/26/性能测试-打开限制/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="十年磨一剑，不露锋芒">
+<meta property="og:description" content="机器性能特效全开用户级别句柄和进程vi /etc/security/limits.conf 1234*   soft noproc   65535  *   hard noproc   65535  *   soft nofile   65535  *   hard nofile   65535 说明：* 代表针对所有用户noproc 是代表最大进程数nofile 是代表最大文件打开数 系统级别句">
+<meta property="og:updated_time" content="2017-09-26T03:29:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="十年磨一剑，不露锋芒">
+<meta name="twitter:title" content="性能测试--打开限制">
+<meta name="twitter:description" content="机器性能特效全开用户级别句柄和进程vi /etc/security/limits.conf 1234*   soft noproc   65535  *   hard noproc   65535  *   soft nofile   65535  *   hard nofile   65535 说明：* 代表针对所有用户noproc 是代表最大进程数nofile 是代表最大文件打开数 系统级别句">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -158,64 +160,262 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-性能测试-打开限制" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/10/Guava-Cache/" class="archive-article-date">
-  	<time datetime="2017-08-10T02:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/10/Guava-Cache/">Guava Cache</a>
+    <h1 class="article-title" itemprop="name">
+      性能测试--打开限制
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/09/26/性能测试-打开限制/" class="archive-article-date">
+  	<time datetime="2017-09-26T03:29:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="机器性能特效全开"><a href="#机器性能特效全开" class="headerlink" title="机器性能特效全开"></a>机器性能特效全开</h3><h4 id="用户级别句柄和进程"><a href="#用户级别句柄和进程" class="headerlink" title="用户级别句柄和进程"></a>用户级别句柄和进程</h4><p>vi /etc/security/limits.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*   soft noproc   65535  </div><div class="line">*   hard noproc   65535  </div><div class="line">*   soft nofile   65535  </div><div class="line">*   hard nofile   65535</div></pre></td></tr></table></figure>
+<p>说明：* 代表针对所有用户<br>noproc 是代表最大进程数<br>nofile 是代表最大文件打开数</p>
+<h4 id="系统级别句柄"><a href="#系统级别句柄" class="headerlink" title="系统级别句柄"></a>系统级别句柄</h4><p>sysctl -w fs.file-max 65536<br>或者<br>echo “65536” &gt; /proc/sys/fs/file-max  </p>
+<h4 id="系统级别的进程数"><a href="#系统级别的进程数" class="headerlink" title="系统级别的进程数"></a>系统级别的进程数</h4><p>vi /etc/security/limits.d/20-nproc.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*          soft    nproc     65535</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">查看系统总限制 命令：cat /proc/sys/fs/file-max    </div><div class="line">查看整个系统目前使用的文件句柄数量命令：cat /proc/sys/fs/file-nr   </div><div class="line">查看某个进程开了哪些句柄 ：lsof -p pid    </div><div class="line">某个进程开了几个句柄 ：lsof -p pid |wc -l    </div><div class="line">也可以看到某个目录 /文件被什么进程占用了,显示已打开该目录或文件的所有进程信息 ：lsof path/filename</div></pre></td></tr></table></figure>
+<h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><h4 id="线程连接数"><a href="#线程连接数" class="headerlink" title="线程连接数"></a>线程连接数</h4><p>统计该tomcat进程内的线程个数<br>ps -Lf pid|wc -l</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</div><div class="line">               connectionTimeout=&quot;20000&quot;</div><div class="line">               redirectPort=&quot;8443&quot; /&gt;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>maxThreads</td>
+<td>200</td>
+<td>最大线程数，为线程池最大大小</td>
+</tr>
+<tr>
+<td>maxConnections</td>
+<td>默认为maxThreads</td>
+<td></td>
+</tr>
+<tr>
+<td>acceptCount</td>
+<td>100</td>
+<td>等待线程数</td>
+</tr>
+<tr>
+<td>minSpareThreads</td>
+<td>10</td>
+<td>初始化线程数</td>
+</tr>
+<tr>
+<td>maxKeepAliveRequests</td>
+<td>100</td>
+<td>一条长连接服务的http请求最大数目（超过了关闭之），-1表示不受数目影响。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="内存调优"><a href="#内存调优" class="headerlink" title="内存调优"></a>内存调优</h4><p>在catalina.sh中加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">JAVA_OPTS=-Xms64m -Xmx256m -XX:PermSize=128M -XX:MaxNewSize=256m -</div><div class="line">XX:MaxPermSize=256m</div></pre></td></tr></table></figure></p>
+<h3 id="Nginx调优"><a href="#Nginx调优" class="headerlink" title="Nginx调优"></a>Nginx调优</h3><ul>
+<li><p>worker_processes<br>nginx 进程数，建议按照cpu 数目来指定—-减少线程切换</p>
+</li>
+<li><p>worker_rlimit_nofile<br>nginx 进程打开的最多文件描述符数目</p>
+</li>
+<li><p>worker_connections<br>  每个进程允许的最多连接数，理论上每台nginx 服务器的最大连接数为worker_processes*worker_connections。</p>
+</li>
+<li><p>keepalive_timeout<br>启动长链接</p>
+</li>
+<li><p>keepalive<br>长连接数目</p>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://static.zybuluo.com/1234567890/2tbovtv5q0jgvgsb003e3g0a/image_1bmjmgqun1korrch1t311r1vhlr2g.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://static.zybuluo.com/1234567890/koi9lkyw5k4y27hxlv9ng3yp/image_1bmjmgbkr19babd9h01difdnl23.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Cache</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">缓存</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能测试</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/26/性能测试-打开限制/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/09/26/性能测试-系统消耗分析/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          性能测试--系统消耗分析
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/09/26/性能调优总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">性能调优总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器性能特效全开"><span class="toc-number">1.</span> <span class="toc-text">机器性能特效全开</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用户级别句柄和进程"><span class="toc-number">1.1.</span> <span class="toc-text">用户级别句柄和进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统级别句柄"><span class="toc-number">1.2.</span> <span class="toc-text">系统级别句柄</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统级别的进程数"><span class="toc-number">1.3.</span> <span class="toc-text">系统级别的进程数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tomcat"><span class="toc-number">2.</span> <span class="toc-text">Tomcat</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#线程连接数"><span class="toc-number">2.1.</span> <span class="toc-text">线程连接数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内存调优"><span class="toc-number">2.2.</span> <span class="toc-text">内存调优</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx调优"><span class="toc-number">3.</span> <span class="toc-text">Nginx调优</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="性能测试-打开限制" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cyt94q09g"; 
+var conf = "prod_d9beaec89e827e0a93197e3abf62faba"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -238,9 +438,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

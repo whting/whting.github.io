@@ -160,6 +160,324 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-性能测试-系统消耗分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/26/性能测试-系统消耗分析/">性能测试--系统消耗分析</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/26/性能测试-系统消耗分析/" class="archive-article-date">
+  	<time datetime="2017-09-26T03:29:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/2017/09/26/性能测试-系统消耗分析/系统消耗分析.png" alt="系统消耗分析.png-332.2kB"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/26/性能测试-系统消耗分析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-性能测试-打开限制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/26/性能测试-打开限制/">性能测试--打开限制</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/26/性能测试-打开限制/" class="archive-article-date">
+  	<time datetime="2017-09-26T03:29:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="机器性能特效全开"><a href="#机器性能特效全开" class="headerlink" title="机器性能特效全开"></a>机器性能特效全开</h3><h4 id="用户级别句柄和进程"><a href="#用户级别句柄和进程" class="headerlink" title="用户级别句柄和进程"></a>用户级别句柄和进程</h4><p>vi /etc/security/limits.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*   soft noproc   65535  </div><div class="line">*   hard noproc   65535  </div><div class="line">*   soft nofile   65535  </div><div class="line">*   hard nofile   65535</div></pre></td></tr></table></figure>
+<p>说明：* 代表针对所有用户<br>noproc 是代表最大进程数<br>nofile 是代表最大文件打开数</p>
+<h4 id="系统级别句柄"><a href="#系统级别句柄" class="headerlink" title="系统级别句柄"></a>系统级别句柄</h4><p>sysctl -w fs.file-max 65536<br>或者<br>echo “65536” &gt; /proc/sys/fs/file-max  </p>
+<h4 id="系统级别的进程数"><a href="#系统级别的进程数" class="headerlink" title="系统级别的进程数"></a>系统级别的进程数</h4><p>vi /etc/security/limits.d/20-nproc.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*          soft    nproc     65535</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">查看系统总限制 命令：cat /proc/sys/fs/file-max    </div><div class="line">查看整个系统目前使用的文件句柄数量命令：cat /proc/sys/fs/file-nr   </div><div class="line">查看某个进程开了哪些句柄 ：lsof -p pid    </div><div class="line">某个进程开了几个句柄 ：lsof -p pid |wc -l    </div><div class="line">也可以看到某个目录 /文件被什么进程占用了,显示已打开该目录或文件的所有进程信息 ：lsof path/filename</div></pre></td></tr></table></figure>
+<h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><h4 id="线程连接数"><a href="#线程连接数" class="headerlink" title="线程连接数"></a>线程连接数</h4><p>统计该tomcat进程内的线程个数<br>ps -Lf pid|wc -l</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</div><div class="line">               connectionTimeout=&quot;20000&quot;</div><div class="line">               redirectPort=&quot;8443&quot; /&gt;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>maxThreads</td>
+<td>200</td>
+<td>最大线程数，为线程池最大大小</td>
+</tr>
+<tr>
+<td>maxConnections</td>
+<td>默认为maxThreads</td>
+<td></td>
+</tr>
+<tr>
+<td>acceptCount</td>
+<td>100</td>
+<td>等待线程数</td>
+</tr>
+<tr>
+<td>minSpareThreads</td>
+<td>10</td>
+<td>初始化线程数</td>
+</tr>
+<tr>
+<td>maxKeepAliveRequests</td>
+<td>100</td>
+<td>一条长连接服务的http请求最大数目（超过了关闭之），-1表示不受数目影响。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="内存调优"><a href="#内存调优" class="headerlink" title="内存调优"></a>内存调优</h4><p>在catalina.sh中加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">JAVA_OPTS=-Xms64m -Xmx256m -XX:PermSize=128M -XX:MaxNewSize=256m -</div><div class="line">XX:MaxPermSize=256m</div></pre></td></tr></table></figure></p>
+<h3 id="Nginx调优"><a href="#Nginx调优" class="headerlink" title="Nginx调优"></a>Nginx调优</h3><ul>
+<li><p>worker_processes<br>nginx 进程数，建议按照cpu 数目来指定—-减少线程切换</p>
+</li>
+<li><p>worker_rlimit_nofile<br>nginx 进程打开的最多文件描述符数目</p>
+</li>
+<li><p>worker_connections<br>  每个进程允许的最多连接数，理论上每台nginx 服务器的最大连接数为worker_processes*worker_connections。</p>
+</li>
+<li><p>keepalive_timeout<br>启动长链接</p>
+</li>
+<li><p>keepalive<br>长连接数目</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能测试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/26/性能测试-打开限制/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-性能调优总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/26/性能调优总结/">性能调优总结</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/26/性能调优总结/" class="archive-article-date">
+  	<time datetime="2017-09-26T03:26:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>5w+1h就是对所做工作进行科学的分析，对某一工作在调查研究的基础上：<br>1、就其工作内容(What)<br>2、责任者(Who)<br>3、工作岗位(Where)<br>4、工作时间(When<br>5、怎样操作(How<br>6、以及为何这样做(Why)<br>即”5W”、”1H”进行书面描述，并按此描述进行操作，达到完成职务任务的目标。(来源“百度百科”)</p>
+</blockquote>
+<h3 id="什么是性能调优-what"><a href="#什么是性能调优-what" class="headerlink" title="什么是性能调优?(what)"></a>什么是性能调优?(what)</h3><p>计算机的体系结构。<br><img src="http://s1.51cto.com/wyfs02/M00/7D/F9/wKioL1b0ng_RkEVBAAC4Gi6CYBc754.jpg-wh_651x-s_1599213270.jpg" alt="计算机的体系结构"><br>如上图，简单来说包括三块：硬件、操作系统、应用程序。其实，性能调优就是调节这些内容，包括硬件、操作系统、应用程序。</p>
+<p>硬件包括：CPU、内存、磁盘、网卡、其它……，<br>操作系统包括:进程、虚拟内存、文件系统、网络、其它……，<br>应用程序:常见的有Apache、MySQL、Nginx、Memcahed等。</p>
+<p>那什么是性能调优呢?</p>
+<blockquote>
+<p>性能调优就是对计算机硬件、操作系统和应用有相当深入的了解，调节三者之间的关系，实现整个系统(包括硬件、操作系统、应用)的性能最大化，并能不断的满足现有的业务需求。</p>
+</blockquote>
+<h3 id="为什么需要性能调优-why"><a href="#为什么需要性能调优-why" class="headerlink" title="为什么需要性能调优?(why)"></a>为什么需要性能调优?(why)</h3><blockquote>
+<p>一、是为了获得更好的系统性能(就是你现有的系统运行的还不错，但优化一下可以运行的更好)。<br>二、是通过性能调优来满足不断增加的业务需求</p>
+</blockquote>
+<h3 id="什么地方需要性能调优-where"><a href="#什么地方需要性能调优-where" class="headerlink" title="什么地方需要性能调优?(where)"></a>什么地方需要性能调优?(where)</h3><blockquote>
+<p>1、硬件选型(根据服务器应用类型来选购服务器)<br>2、操作系统调节系统参数<br>3、应用程序 (Nginx、MySQL等)<br>4、代码</p>
+</blockquote>
+<h3 id="怎么样进行性能调优-How"><a href="#怎么样进行性能调优-How" class="headerlink" title="怎么样进行性能调优?(How)"></a>怎么样进行性能调优?(How)</h3><blockquote>
+<ul>
+<li>性能指标 –&gt; 确认衡量标准</li>
+<li>性能测试 –&gt; 验证性能指标</li>
+<li>性能分析 –&gt; 找出性能瓶颈</li>
+<li>性能调优 –&gt; 解决性能问题</li>
+<li>性能监控 –&gt; 检验调优效果</li>
+</ul>
+</blockquote>
+<h4 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h4><p>一般衡量一个项目(这里指的网站)的指标有三个：</p>
+<ul>
+<li>吞吐量 –&gt; 是单位时间内完成的用户或系统的请求数量。</li>
+<li>并发数 –&gt; 同时能接受多少用户的访问请求</li>
+<li>响应时间 –&gt; 用户发出请求到收到响应的时间间隔。</li>
+</ul>
+<h4 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h4><p>1、先看CPU利用率，如果CPU利用率不高，但是系统的Throughput和Latency上不去了，这说明我们的程序并没有忙于计算，而是忙于别的一些事，比如IO。（另外，CPU的利用率还要看内核态的和用户态的，内核态的一上去了，整个系统的性能就下来了。而对于多核CPU来说，CPU 0 是相当关键的，如果CPU 0的负载高，那么会影响其它核的性能，因为CPU各核间是需要有调度的，这靠CPU0完成）</p>
+<p>2、然后，我们可以看一下IO大不大，IO和CPU一般是反着来的，CPU利用率高则IO不大，IO大则CPU就小。关于IO，我们要看三个事，一个是磁盘文件IO，一个是驱动程序的IO（如：网卡），一个是内存换页率。这三个事都会影响系统性能。</p>
+<p>3、然后，查看一下网络带宽使用情况，在Linux下，你可以使用iftop, iptraf, ntop, tcpdump这些命令来查看。或是用Wireshark来查看。</p>
+<p>4、如果CPU不高，IO不高，内存使用不高，网络带宽使用不高。但是系统的性能上不去。这说明你的程序有问题，比如，你的程序被阻塞了。可能是因为等那个锁，可能是因为等某个资源，或者是在切换上下文。</p>
+<h4 id="性能监控"><a href="#性能监控" class="headerlink" title="性能监控"></a>性能监控</h4><table>
+<thead>
+<tr>
+<th>CPU 使用率</th>
+<th>CPU负载</th>
+<th>内存使用率</th>
+<th>磁盘I/O</th>
+<th>网络流量</th>
+<th>磁盘空间</th>
+<th>系统进程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能调优</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/26/性能调优总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Cassandra学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -714,77 +1032,10 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/03/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/03/hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-03T06:24:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/03/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -908,6 +1159,14 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">选型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能测试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能调优</a>
               </li>
              
               <li class="article-tag-list-item">
