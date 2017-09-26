@@ -382,50 +382,7 @@ var _hmt = _hmt || [];
 <blockquote>
 <p>性能调优就是对计算机硬件、操作系统和应用有相当深入的了解，调节三者之间的关系，实现整个系统(包括硬件、操作系统、应用)的性能最大化，并能不断的满足现有的业务需求。</p>
 </blockquote>
-<h3 id="为什么需要性能调优-why"><a href="#为什么需要性能调优-why" class="headerlink" title="为什么需要性能调优?(why)"></a>为什么需要性能调优?(why)</h3><blockquote>
-<p>一、是为了获得更好的系统性能(就是你现有的系统运行的还不错，但优化一下可以运行的更好)。<br>二、是通过性能调优来满足不断增加的业务需求</p>
-</blockquote>
-<h3 id="什么地方需要性能调优-where"><a href="#什么地方需要性能调优-where" class="headerlink" title="什么地方需要性能调优?(where)"></a>什么地方需要性能调优?(where)</h3><blockquote>
-<p>1、硬件选型(根据服务器应用类型来选购服务器)<br>2、操作系统调节系统参数<br>3、应用程序 (Nginx、MySQL等)<br>4、代码</p>
-</blockquote>
-<h3 id="怎么样进行性能调优-How"><a href="#怎么样进行性能调优-How" class="headerlink" title="怎么样进行性能调优?(How)"></a>怎么样进行性能调优?(How)</h3><blockquote>
-<ul>
-<li>性能指标 –&gt; 确认衡量标准</li>
-<li>性能测试 –&gt; 验证性能指标</li>
-<li>性能分析 –&gt; 找出性能瓶颈</li>
-<li>性能调优 –&gt; 解决性能问题</li>
-<li>性能监控 –&gt; 检验调优效果</li>
-</ul>
-</blockquote>
-<h4 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h4><p>一般衡量一个项目(这里指的网站)的指标有三个：</p>
-<ul>
-<li>吞吐量 –&gt; 是单位时间内完成的用户或系统的请求数量。</li>
-<li>并发数 –&gt; 同时能接受多少用户的访问请求</li>
-<li>响应时间 –&gt; 用户发出请求到收到响应的时间间隔。</li>
-</ul>
-<h4 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h4><p>1、先看CPU利用率，如果CPU利用率不高，但是系统的Throughput和Latency上不去了，这说明我们的程序并没有忙于计算，而是忙于别的一些事，比如IO。（另外，CPU的利用率还要看内核态的和用户态的，内核态的一上去了，整个系统的性能就下来了。而对于多核CPU来说，CPU 0 是相当关键的，如果CPU 0的负载高，那么会影响其它核的性能，因为CPU各核间是需要有调度的，这靠CPU0完成）</p>
-<p>2、然后，我们可以看一下IO大不大，IO和CPU一般是反着来的，CPU利用率高则IO不大，IO大则CPU就小。关于IO，我们要看三个事，一个是磁盘文件IO，一个是驱动程序的IO（如：网卡），一个是内存换页率。这三个事都会影响系统性能。</p>
-<p>3、然后，查看一下网络带宽使用情况，在Linux下，你可以使用iftop, iptraf, ntop, tcpdump这些命令来查看。或是用Wireshark来查看。</p>
-<p>4、如果CPU不高，IO不高，内存使用不高，网络带宽使用不高。但是系统的性能上不去。这说明你的程序有问题，比如，你的程序被阻塞了。可能是因为等那个锁，可能是因为等某个资源，或者是在切换上下文。</p>
-<h4 id="性能监控"><a href="#性能监控" class="headerlink" title="性能监控"></a>性能监控</h4><table>
-<thead>
-<tr>
-<th>CPU 使用率</th>
-<th>CPU负载</th>
-<th>内存使用率</th>
-<th>磁盘I/O</th>
-<th>网络流量</th>
-<th>磁盘空间</th>
-<th>系统进程</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-
+        
       
 
       
@@ -1126,10 +1083,6 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Cassandra</a>
               </li>
              
@@ -1138,19 +1091,15 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">对象池</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">GenericObjectPool</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Cache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1166,15 +1115,23 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">性能调优</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">规则引擎</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">drools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Cache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能调优</a>
               </li>
             
             <div class="clearfix"></div>
