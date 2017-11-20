@@ -17,7 +17,7 @@
 <meta property="og:description" content="在使用tomcat时，经常会遇到连接数、线程数之类的配置问题，要真正理解这些概念，必须先了解Tomcat的连接器（Connector）。Connector的主要功能，是接收连接请求，创建Request和Response对象用于和请求端交换数据；然后分配线程让Engine（也就是Servlet容器）来处理这个请求，并把产生的Request和Response对象传给Engine。当Engine处理完">
 <meta property="og:image" content="http://static.zybuluo.com/1234567890/l6qfwz3riqwvoqrg38t520dy/image_1bv4f0l6cd1416gr19vh10311nf29.png">
 <meta property="og:image" content="http://static.zybuluo.com/1234567890/na409ibdmys1iyel7a3xizrr/image_1bv4f1tgj10qm1tus4on1ggj16r9m.png">
-<meta property="og:updated_time" content="2017-11-17T08:01:25.000Z">
+<meta property="og:updated_time" content="2017-11-20T01:47:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat连接器与参数设置">
 <meta name="twitter:description" content="在使用tomcat时，经常会遇到连接数、线程数之类的配置问题，要真正理解这些概念，必须先了解Tomcat的连接器（Connector）。Connector的主要功能，是接收连接请求，创建Request和Response对象用于和请求端交换数据；然后分配线程让Engine（也就是Servlet容器）来处理这个请求，并把产生的Request和Response对象传给Engine。当Engine处理完">
@@ -192,7 +192,7 @@ var _hmt = _hmt || [];
 <h3 id="BIO-NIO-比较"><a href="#BIO-NIO-比较" class="headerlink" title="BIO/NIO 比较"></a>BIO/NIO 比较</h3><p>在accept队列中接收连接（当客户端向服务器发送请求时，如果客户端与OS完成三次握手建立了连接，则OS将该连接放入accept队列）；在连接中获取请求的数据，生成request；调用servlet容器处理请求；返回response。为了便于后面的说明，首先明确一下连接与请求的关系：连接是TCP层面的（传输层），对应socket；请求是HTTP层面的（应用层），必须依赖于TCP的连接实现；一个TCP连接中可能传输多个HTTP请求。</p>
 <h4 id="BIO"><a href="#BIO" class="headerlink" title="BIO"></a>BIO</h4><p><img src="http://static.zybuluo.com/1234567890/l6qfwz3riqwvoqrg38t520dy/image_1bv4f0l6cd1416gr19vh10311nf29.png" alt="image_1bv4f0l6cd1416gr19vh10311nf29.png-24.6kB"></p>
 <p>在BIO实现的Connector中，处理请求的主要实体是JIoEndpoint对象。JIoEndpoint维护了Acceptor和Worker：Acceptor接收socket，然后从Worker线程池中找出空闲的线程处理socket，如果worker线程池没有空闲线程，则Acceptor将阻塞。其中Worker是Tomcat自带的线程池</p>
-<h4 id="BIO-1"><a href="#BIO-1" class="headerlink" title="BIO"></a>BIO</h4><p><img src="http://static.zybuluo.com/1234567890/na409ibdmys1iyel7a3xizrr/image_1bv4f1tgj10qm1tus4on1ggj16r9m.png" alt="image_1bv4f1tgj10qm1tus4on1ggj16r9m.png-28kB"></p>
+<h4 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h4><p><img src="http://static.zybuluo.com/1234567890/na409ibdmys1iyel7a3xizrr/image_1bv4f1tgj10qm1tus4on1ggj16r9m.png" alt="image_1bv4f1tgj10qm1tus4on1ggj16r9m.png-28kB"></p>
 <p>Acceptor接收socket后，不是直接使用Worker中的线程处理请求，而是先将请求发送给了Poller，而Poller是实现NIO的关键。Acceptor向Poller发送请求通过队列实现，使用了典型的生产者-消费者模式。在Poller中，维护了一个Selector对象；当Poller从队列中取出socket后，注册到该Selector中；然后通过遍历Selector，找出其中可读的socket，并使用Worker中的线程处理相应请求。</p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>目前大多数HTTP请求使用的是长连接（HTTP/1.1默认keep-alive为true），而长连接意味着，一个TCP的socket在当前请求结束后，如果没有新的请求到来，socket不会立马释放，而是等timeout后再释放。如果使用BIO，“读取socket并交给Worker中的线程”这个过程是阻塞的，也就意味着在socket等待下一个请求或等待释放的过程中，处理这个socket的工作线程会一直被占用，无法释放；因此Tomcat可以同时处理的socket数目不能超过最大线程数，性能受到了极大限制。而使用NIO，“读取socket并交给Worker中的线程”这个过程是非阻塞的，当socket在等待下一个请求或等待释放时，并不会占用工作线程，因此Tomcat可以同时处理的socket数目远大于最大线程数，并发性能大大提高。</p>
 <h3 id="acceptCount、maxConnections、maxThreads"><a href="#acceptCount、maxConnections、maxThreads" class="headerlink" title="acceptCount、maxConnections、maxThreads"></a>acceptCount、maxConnections、maxThreads</h3><h4 id="acceptCount"><a href="#acceptCount" class="headerlink" title="acceptCount"></a>acceptCount</h4><p>accept队列的长度；当accept队列中连接的个数达到acceptCount时，队列满，进来的请求一律被拒绝。默认值是100。</p>
@@ -343,7 +343,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Connector的protocol"><span class="toc-number">1.</span> <span class="toc-text">Connector的protocol</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BIO-NIO-比较"><span class="toc-number">2.</span> <span class="toc-text">BIO/NIO 比较</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BIO"><span class="toc-number">2.1.</span> <span class="toc-text">BIO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BIO-1"><span class="toc-number">2.2.</span> <span class="toc-text">BIO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">2.3.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#acceptCount、maxConnections、maxThreads"><span class="toc-number">3.</span> <span class="toc-text">acceptCount、maxConnections、maxThreads</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#acceptCount"><span class="toc-number">3.1.</span> <span class="toc-text">acceptCount</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#maxConnections"><span class="toc-number">3.2.</span> <span class="toc-text">maxConnections</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#maxThreads"><span class="toc-number">3.3.</span> <span class="toc-text">maxThreads</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Connector的protocol"><span class="toc-number">1.</span> <span class="toc-text">Connector的protocol</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BIO-NIO-比较"><span class="toc-number">2.</span> <span class="toc-text">BIO/NIO 比较</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BIO"><span class="toc-number">2.1.</span> <span class="toc-text">BIO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NIO"><span class="toc-number">2.2.</span> <span class="toc-text">NIO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">2.3.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#acceptCount、maxConnections、maxThreads"><span class="toc-number">3.</span> <span class="toc-text">acceptCount、maxConnections、maxThreads</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#acceptCount"><span class="toc-number">3.1.</span> <span class="toc-text">acceptCount</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#maxConnections"><span class="toc-number">3.2.</span> <span class="toc-text">maxConnections</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#maxThreads"><span class="toc-number">3.3.</span> <span class="toc-text">maxThreads</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -463,19 +463,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">对象池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">GenericObjectPool</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nosql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">选型</a>
+                <a href="javascript:void(0)" class="js-tag color5">Cassandra</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -483,11 +471,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cassandra</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">性能测试</a>
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,11 +483,31 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color1">nosql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">选型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">对象池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">GenericObjectPool</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能调优</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能测试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,10 +516,6 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">drools</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
