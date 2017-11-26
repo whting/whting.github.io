@@ -6,17 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/9 | Hexo</title>
+  <title>Netty学习 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="十年磨一剑，不露锋芒">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2017/09/index.html">
+  <meta name="description" content="Netty特性介绍 Netty是一个高性能、异步事件驱动的NIO框架，它提供了对TCP、UDP和文件传输的支持，作为一个异步NIO框架，Netty的所有IO操作都是异步非阻塞的，通过Future-Listener机制，用户可以方便的主动获取或者通过通知机制获得IO操作结果">
+<meta name="keywords" content="Netty">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Netty学习">
+<meta property="og:url" content="http://yoursite.com/2017/11/26/Netty学习/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="十年磨一剑，不露锋芒">
+<meta property="og:description" content="Netty特性介绍 Netty是一个高性能、异步事件驱动的NIO框架，它提供了对TCP、UDP和文件传输的支持，作为一个异步NIO框架，Netty的所有IO操作都是异步非阻塞的，通过Future-Listener机制，用户可以方便的主动获取或者通过通知机制获得IO操作结果">
+<meta property="og:image" content="http://static.zybuluo.com/1234567890/9g6ih4vopsr94vcwdmzwhy0e/image_1bvmbbi4q1gkt46h15ao11mt1k3p9.png">
+<meta property="og:image" content="http://static.zybuluo.com/1234567890/k3r4rdvr5txvnecmh6kxnikg/image_1bvmo1kgi1od44rkkfb1g611tf49.png">
+<meta property="og:updated_time" content="2017-11-26T10:30:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="十年磨一剑，不露锋芒">
+<meta name="twitter:title" content="Netty学习">
+<meta name="twitter:description" content="Netty特性介绍 Netty是一个高性能、异步事件驱动的NIO框架，它提供了对TCP、UDP和文件传输的支持，作为一个异步NIO框架，Netty的所有IO操作都是异步非阻塞的，通过Future-Listener机制，用户可以方便的主动获取或者通过通知机制获得IO操作结果">
+<meta name="twitter:image" content="http://static.zybuluo.com/1234567890/9g6ih4vopsr94vcwdmzwhy0e/image_1bvmbbi4q1gkt46h15ao11mt1k3p9.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -158,125 +163,225 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Netty学习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/26/性能测试-系统消耗分析/" class="archive-article-date">
-  	<time datetime="2017-09-26T03:29:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/26/性能测试-系统消耗分析/">性能测试--系统消耗分析</a>
+    <h1 class="article-title" itemprop="name">
+      Netty学习
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/26/性能测试-打开限制/" class="archive-article-date">
-  	<time datetime="2017-09-26T03:29:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
+        
+        <a href="/2017/11/26/Netty学习/" class="archive-article-date">
+  	<time datetime="2017-11-26T10:29:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/26/性能测试-打开限制/">性能测试--打开限制</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Netty特性介绍"><a href="#Netty特性介绍" class="headerlink" title="Netty特性介绍"></a>Netty特性介绍</h2><blockquote>
+<p>Netty是一个高性能、异步事件驱动的NIO框架，它提供了对TCP、UDP和文件传输的支持，作为一个异步NIO框架，Netty的所有IO操作都是异步非阻塞的，通过Future-Listener机制，用户可以方便的主动获取或者通过通知机制获得IO操作结果</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="传统RPC调用性能差原因"><a href="#传统RPC调用性能差原因" class="headerlink" title="传统RPC调用性能差原因"></a>传统RPC调用性能差原因</h2><h3 id="网络传输方式"><a href="#网络传输方式" class="headerlink" title="网络传输方式"></a>网络传输方式</h3><p>采用了同步阻塞IO，当客户端的并发压力或者网络时延增大之后，同步阻塞IO会由于频繁的wait导致IO线程经常性的阻塞，由于线程无法高效的工作，IO处理能力自然下降。</p>
+<p>BIO通信模型图看下BIO通信的弊端<br><img src="http://static.zybuluo.com/1234567890/9g6ih4vopsr94vcwdmzwhy0e/image_1bvmbbi4q1gkt46h15ao11mt1k3p9.png" alt="image_1bvmbbi4q1gkt46h15ao11mt1k3p9.png-57.2kB"></p>
+<p>通常由一个Acceptor接收客户端的请求连接，接收到请求后创建一个新的线程来处理该请求消息。处理完后，返回应答消息给客户端，线程销毁。这就是一请求一应答模型。<br>但是当请求并发访问量逐渐增大时，服务端的线程数和请求并发数成线性正比增长。线程是java虚拟机的非常宝贵的资源，当线程数膨胀后，性能急剧下降。随着并发量的继续增加，可能会发生句柄溢出、线程堆栈溢出等问题，并导致服务器最终宕机<br>针对上面的问题有个替代方法—-初始化一个线程连接池，客户端的请求过来，从线程池中取出一个线程去运行（不够不能从线程池拿到线程，就等待），亲求处理完，将线程归还给线程池。——Tomcat就是这样做的</p>
+<h3 id="序列化方式问题"><a href="#序列化方式问题" class="headerlink" title="序列化方式问题"></a>序列化方式问题</h3><p>1、Java序列化机制是Java内部的一种对象编解码技术，无法跨语言使用；例如对于异构系统之间的对接，Java序列化后的码流需要能够通过其它语言反序列化成原始对象（副本），目前很难支持；</p>
+<p>2、相比于其它开源的序列化框架，Java序列化后的码流太大，无论是网络传输还是持久化到磁盘，都会导致额外的资源占用；</p>
+<p>3、序列化性能差（CPU资源占用高）。</p>
+<h2 id="Netty高性能之道"><a href="#Netty高性能之道" class="headerlink" title="Netty高性能之道"></a>Netty高性能之道</h2><h3 id="异步非阻塞通信"><a href="#异步非阻塞通信" class="headerlink" title="异步非阻塞通信"></a>异步非阻塞通信</h3><p>IO多路复用技术通过把多个IO的阻塞复用到同一个select的阻塞上，从而使得系统在单线程的情况下可以同时处理多个客户端请求。<br><img src="http://static.zybuluo.com/1234567890/k3r4rdvr5txvnecmh6kxnikg/image_1bvmo1kgi1od44rkkfb1g611tf49.png" alt="image_1bvmo1kgi1od44rkkfb1g611tf49.png-102.3kB"></p>
+<h3 id="零拷贝"><a href="#零拷贝" class="headerlink" title="零拷贝"></a>零拷贝</h3><p>1、Netty的接收和发送ByteBuffer采用DIRECT BUFFERS，使用堆外直接内存进行Socket读写，不需要进行字节缓冲区的二次拷贝。如果使用传统的堆内存（HEAP BUFFERS）进行Socket读写，JVM会将堆内存Buffer拷贝一份到直接内存中，然后才写入Socket中。相比于堆外直接内存，消息在发送过程中多了一次缓冲区的内存拷贝。</p>
+<p>2、Netty提供了组合Buffer对象，可以聚合多个ByteBuffer对象，用户可以像操作一个Buffer那样方便的对组合Buffer进行操作，避免了传统通过内存拷贝的方式将几个小Buffer合并成一个大的Buffer。</p>
+<p>3、Netty的文件传输采用了transferTo方法，它可以直接将文件缓冲区的数据发送到目标Channel，避免了传统通过循环write方式导致的内存拷贝问题。</p>
+<h3 id="高性能的序列化框架"><a href="#高性能的序列化框架" class="headerlink" title="高性能的序列化框架"></a>高性能的序列化框架</h3><p>影响序列化性能的关键因素总结如下：</p>
+<ul>
+<li><p>序列化后的码流大小（网络带宽的占用）；</p>
+</li>
+<li><p>序列化&amp;反序列化的性能（CPU资源占用）；</p>
+</li>
+<li><p>是否支持跨语言（异构系统的对接和开发语言切换）。</p>
+</li>
+</ul>
+<p>Netty默认提供了对Google Protobuf的支持，通过扩展Netty的编解码接口，用户可以实现其它的高性能序列化框架，例如Thrift的压缩二进制编解码框架。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>了解了BIO与NIO的<a href="http://www.aliqi.wang/2017/11/17/Tomcat%E8%BF%9E%E6%8E%A5%E5%99%A8%E4%B8%8E%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE/" target="_blank" rel="external">区别</a></li>
+<li>堆外存，能减少堆内存到直接内存的一次拷贝</li>
+<li>序列化应该关注码流的大小、序列化&amp;反序列化的性能、是否支持跨语言</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://static.zybuluo.com/1234567890/2tbovtv5q0jgvgsb003e3g0a/image_1bmjmgqun1korrch1t311r1vhlr2g.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://static.zybuluo.com/1234567890/koi9lkyw5k4y27hxlv9ng3yp/image_1bmjmgbkr19babd9h01difdnl23.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能测试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Netty</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/26/Netty学习/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/26/性能调优总结/" class="archive-article-date">
-  	<time datetime="2017-09-26T03:26:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/17/Tomcat连接器与参数设置/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Tomcat连接器与参数设置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/26/性能调优总结/">性能调优总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能调优</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Netty特性介绍"><span class="toc-number">1.</span> <span class="toc-text">Netty特性介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传统RPC调用性能差原因"><span class="toc-number">2.</span> <span class="toc-text">传统RPC调用性能差原因</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络传输方式"><span class="toc-number">2.1.</span> <span class="toc-text">网络传输方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#序列化方式问题"><span class="toc-number">2.2.</span> <span class="toc-text">序列化方式问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Netty高性能之道"><span class="toc-number">3.</span> <span class="toc-text">Netty高性能之道</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#异步非阻塞通信"><span class="toc-number">3.1.</span> <span class="toc-text">异步非阻塞通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#零拷贝"><span class="toc-number">3.2.</span> <span class="toc-text">零拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高性能的序列化框架"><span class="toc-number">3.3.</span> <span class="toc-text">高性能的序列化框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+  <div id="SOHUCS" sid="Netty学习" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cyt94q09g"; 
+var conf = "prod_d9beaec89e827e0a93197e3abf62faba"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -299,8 +404,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
