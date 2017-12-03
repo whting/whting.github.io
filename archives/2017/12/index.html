@@ -6,24 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>jstack分析 | Hexo</title>
+  <title>Archives: 2017/12 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="知识准备线程状态 克隆此图">
-<meta property="og:type" content="article">
-<meta property="og:title" content="jstack分析">
-<meta property="og:url" content="http://yoursite.com/2017/10/29/jstack分析/index.html">
+  <meta name="description" content="十年磨一剑，不露锋芒">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/archives/2017/12/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="知识准备线程状态 克隆此图">
-<meta property="og:image" content="http://static.zybuluo.com/1234567890/hq0fg665cmkc22izj6gskyyi/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E5%9B%BE%20%282%29.png">
-<meta property="og:image" content="http://static.zybuluo.com/1234567890/6vvti587eb0cao7cf2we40mg/image_1btguh61c1qak1cjf132g18f4l7v23.png">
-<meta property="og:image" content="http://static.zybuluo.com/1234567890/to81h4g1bcj9ukt104qk81t9/image_1btgtndb819mtafv1srp1fp1qfp19.png">
-<meta property="og:image" content="http://static.zybuluo.com/1234567890/ijv2kdyx0vy83uoxqf3m5ivr/image_1btgtro215nsg31v0ajq71fuo1m.png">
-<meta property="og:image" content="http://static.zybuluo.com/1234567890/a9fyhg13j2u9cg74lcwq79sl/image_1btjncc46573595100ifvqgom2g.png">
-<meta property="og:updated_time" content="2017-11-17T09:01:40.000Z">
+<meta property="og:description" content="十年磨一剑，不露锋芒">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jstack分析">
-<meta name="twitter:description" content="知识准备线程状态 克隆此图">
-<meta name="twitter:image" content="http://static.zybuluo.com/1234567890/hq0fg665cmkc22izj6gskyyi/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E5%9B%BE%20%282%29.png">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="十年磨一剑，不露锋芒">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -165,232 +158,60 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-jstack分析" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      jstack分析
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/12/03/java锁/" class="archive-article-date">
+  	<time datetime="2017-12-03T04:46:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/12/03/java锁/">java锁</a>
     </h1>
   
 
-        
-        <a href="/2017/10/29/jstack分析/" class="archive-article-date">
-  	<time datetime="2017-10-29T10:11:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2><h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><p><img src="http://static.zybuluo.com/1234567890/hq0fg665cmkc22izj6gskyyi/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E5%9B%BE%20%282%29.png" alt="线程状态图.png-43.1kB"></p>
-<p><a href="https://www.processon.com/view/link/59f4258de4b06c8e1089cb28" target="_blank" rel="external">克隆此图</a></p>
-<a id="more"></a>
-<p>各状态说明：</p>
-<ul>
-<li>NEW<br>当线程对象创建时存在的状态，此时线程不可能执行</li>
-<li>RUNNABLE<br>当调用thread.start()后，线程变成为Runnable状态。只要得到CPU，就可以执行</li>
-<li>RUNNING<br>线程正在执行</li>
-<li>WAITING<br>执行thread.join()或在锁对象调用obj.wait()等情况就会进该状态，表明线程正处于等待某个资源或条件发生来唤醒自己</li>
-<li>TIME_WAIT<br>执行Thread.sleep(long)、thread.join(long)或obj.wait(long)等就会进该状态，与Waiting的区别在于Timed_Waiting的等待有时间限制</li>
-<li>BLOCKED<br>如果进入同步方法或同步代码块，没有获取到锁，则会进入该状态</li>
-<li>DEAD<br>线程执行完毕，或者抛出了未捕获的异常之后，会进入dead状态，表示该线程结束</li>
-</ul>
-<h3 id="对于jstack日志，我们要着重关注如下关键信息"><a href="#对于jstack日志，我们要着重关注如下关键信息" class="headerlink" title="对于jstack日志，我们要着重关注如下关键信息"></a>对于jstack日志，我们要着重关注如下关键信息</h3><ul>
-<li>Deadlock：<br>表示有死锁</li>
-<li>Waiting on condition<br>等待某个资源或条件发生来唤醒自己。具体需要结合jstacktrace来分析，比如线程正在sleep，网络读写繁忙而等待</li>
-<li>Blocked<br>阻塞</li>
-<li>Waiting on monitor entry<br>在等待获取锁</li>
-<li>in Object.wait()<br>获取锁后又执行obj.wait()放弃锁</li>
-</ul>
-<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><p>对于Waiting on monitor entry 和 in Object.wait()的详细描述</p>
-<blockquote>
-<p>Monitor是 Java中用以实现线程之间的互斥与协作的主要手段，它可以看成是对象或者 Class的锁。每一个对象都有，也仅有一个 monitor。从下图中可以看出，每个 Monitor在某个时刻，只能被一个线程拥有，该线程就是 “Active Thread”，而其它线程都是 “Waiting Thread”，分别在两个队列 “ Entry<br> Set”和 “Wait Set”里面等候。在 “Entry Set”中等待的线程状态是 “Waiting for monitor entry”，而在 “Wait Set”中等待的线程状态是 “in Object.wait()”</p>
-</blockquote>
-<p><img src="http://static.zybuluo.com/1234567890/6vvti587eb0cao7cf2we40mg/image_1btguh61c1qak1cjf132g18f4l7v23.png" alt="线程状态"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Integer monitor = 42;</div><div class="line">public void test()&#123;</div><div class="line">    //entry set</div><div class="line">    synchronized(monitor)&#123;  //entry set</div><div class="line">        ...</div><div class="line">        Object.wait()    //wait set</div><div class="line">        ...   </div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><p>jstack pid</p>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="例1–多线程竞争synchronized锁"><a href="#例1–多线程竞争synchronized锁" class="headerlink" title="例1–多线程竞争synchronized锁"></a>例1–多线程竞争synchronized锁</h3><p><img src="http://static.zybuluo.com/1234567890/to81h4g1bcj9ukt104qk81t9/image_1btgtndb819mtafv1srp1fp1qfp19.png" alt="image_1btgtndb819mtafv1srp1fp1qfp19.png-113.3kB"></p>
-<p>很明显：线程1获取到锁，处于RUNNABLE状态，线程2处于BLOCK状态<br>1、locked <0x000000076bf62208>说明线程1对地址为0x000000076bf62208对象进行了加锁；<br>2、waiting to lock <0x000000076bf62208> 说明线程2在等待地址为0x000000076bf62208对象上的锁；<br>3、waiting for monitor entry [0x000000001e21f000]说明线程1是通过synchronized关键字进入了监视器的临界区，并处于”Entry Set”队列，等待monitor</0x000000076bf62208></0x000000076bf62208></p>
-<h3 id="实例2–通过wait挂起线程"><a href="#实例2–通过wait挂起线程" class="headerlink" title="实例2–通过wait挂起线程"></a>实例2–通过wait挂起线程</h3><p><img src="http://static.zybuluo.com/1234567890/ijv2kdyx0vy83uoxqf3m5ivr/image_1btgtro215nsg31v0ajq71fuo1m.png" alt="image_1btgtro215nsg31v0ajq71fuo1m.png-116.8kB"></p>
-<p>线程1和2都处于WAITING状态<br>1、线程1和2都是先locked <0x000000076bf62500>，再waiting on <0x000000076bf62500>，之所以先锁再等同一个对象，是因为wait方法需要先通过synchronized获得该地址对象的monitor；<br>2、waiting on <0x000000076bf62500>说明线程执行了wait方法之后，释放了monitor，进入到”Wait Set”队列，等待其它线程执行地址为0x000000076bf62500对象的notify方法，并唤醒自己</0x000000076bf62500></0x000000076bf62500></0x000000076bf62500></p>
-<h3 id="实例3"><a href="#实例3" class="headerlink" title="实例3"></a>实例3</h3><p><img src="http://static.zybuluo.com/1234567890/a9fyhg13j2u9cg74lcwq79sl/image_1btjncc46573595100ifvqgom2g.png" alt="image_1btjncc46573595100ifvqgom2g.png-71.7kB"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">this.service = new ThreadPoolExecutor(16, Integer.MAX_VALUE,</div><div class="line">                60L, TimeUnit.SECONDS,</div><div class="line">                new SynchronousQueue&lt;Runnable&gt;(),</div><div class="line">                new CustomPrefixThreadFactory(&quot;ruleService&quot;));</div></pre></td></tr></table></figure>
-<p>1、“TIMED_WAITING (parking)”中的 timed_waiting 指等待状态，但这里指定了时间，到达指定的时间后自动退出等待状态；parking指线程处于挂起中。<br>2、“waiting on condition”需要与堆栈中的“parking to wait for  <0x00000007079897a8> (a java.util.concurrent.SynchronousQueue$TransferStack)” 结合来看。首先，本线程肯定是在等待某个条件的发生，来把自己唤醒。其次，SynchronousQueue 并不是一个队列，只是线程之间移交信息的机制，当我们把一个元素放入到 SynchronousQueue 中时必须有另一个线程正在等待接受移交的任务，因此这就是本线程在等待的条件。<br>3、结合代码看，线程池等待任务的到来。TIMED_WAITING,因为60s后，该线程就会被回收</0x00000007079897a8></p>
-<h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><h3 id="如果大量线程在“waiting-for-monitor-entry”："><a href="#如果大量线程在“waiting-for-monitor-entry”：" class="headerlink" title="如果大量线程在“waiting for monitor entry”："></a>如果大量线程在“waiting for monitor entry”：</h3><p>可能是一个全局锁阻塞住了大量线程。如果短时间内打印的 thread dump 文件反映，随着时间流逝，waiting for monitor entry 的线程越来越多，没有减少的趋势，可能意味着<code>某些线程在临界区里呆的时间太长了，以至于越来越多新线程迟迟无法进入临界区</code>。</p>
-<h3 id="如果大量线程在“waiting-on-condition”："><a href="#如果大量线程在“waiting-on-condition”：" class="headerlink" title="如果大量线程在“waiting on condition”："></a>如果大量线程在“waiting on condition”：</h3><p>可能是它们又跑去获取第三方资源，<code>尤其是第三方网络资源，迟迟获取不到Response</code>，导致大量线程进入等待状态。<br>所以如果你发现有大量的线程都处在 Wait on condition，从线程堆栈看，正等待网络读写，这可能是一个<code>网络瓶颈的征兆</code>，因为网络阻塞导致线程无法执行。</p>
-<h3 id="如果说系统慢，"><a href="#如果说系统慢，" class="headerlink" title="如果说系统慢，"></a>如果说系统慢，</h3><p>那么要特别关注Blocked,Waiting on condition</p>
-<h3 id="如果说系统的cpu耗的高"><a href="#如果说系统的cpu耗的高" class="headerlink" title="如果说系统的cpu耗的高"></a>如果说系统的cpu耗的高</h3><p>那么肯定是线程执行有死循环，那么此时要关注下Runable状态。</p>
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">锁</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-      
+          
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://static.zybuluo.com/1234567890/2tbovtv5q0jgvgsb003e3g0a/image_1bmjmgqun1korrch1t311r1vhlr2g.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://static.zybuluo.com/1234567890/koi9lkyw5k4y27hxlv9ng3yp/image_1bmjmgbkr19babd9h01difdnl23.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/29/jstack分析/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/11/17/设计模式/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          设计模式
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/09/26/性能测试-系统消耗分析/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">性能测试--系统消耗分析</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识准备"><span class="toc-number">1.</span> <span class="toc-text">知识准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线程状态"><span class="toc-number">1.1.</span> <span class="toc-text">线程状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对于jstack日志，我们要着重关注如下关键信息"><span class="toc-number">1.2.</span> <span class="toc-text">对于jstack日志，我们要着重关注如下关键信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#区别"><span class="toc-number">1.2.1.</span> <span class="toc-text">区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令"><span class="toc-number">1.3.</span> <span class="toc-text">命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-number">2.</span> <span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#例1–多线程竞争synchronized锁"><span class="toc-number">2.1.</span> <span class="toc-text">例1–多线程竞争synchronized锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例2–通过wait挂起线程"><span class="toc-number">2.2.</span> <span class="toc-text">实例2–通过wait挂起线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例3"><span class="toc-number">2.3.</span> <span class="toc-text">实例3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#经验"><span class="toc-number">3.</span> <span class="toc-text">经验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如果大量线程在“waiting-for-monitor-entry”："><span class="toc-number">3.1.</span> <span class="toc-text">如果大量线程在“waiting for monitor entry”：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果大量线程在“waiting-on-condition”："><span class="toc-number">3.2.</span> <span class="toc-text">如果大量线程在“waiting on condition”：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果说系统慢，"><span class="toc-number">3.3.</span> <span class="toc-text">如果说系统慢，</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果说系统的cpu耗的高"><span class="toc-number">3.4.</span> <span class="toc-text">如果说系统的cpu耗的高</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="jstack分析" ></div> 
-<script type="text/javascript"> 
-(function(){ 
-var appid = "cyt94q09g"; 
-var conf = "prod_d9beaec89e827e0a93197e3abf62faba"; 
-var width = window.innerWidth || document.documentElement.clientWidth; 
-if (width < 960) { 
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
-  
-
-  
+    
 
 
           </div>
@@ -413,8 +234,8 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

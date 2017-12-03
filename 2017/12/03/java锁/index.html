@@ -6,24 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>jstack分析 | Hexo</title>
+  <title>java锁 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="知识准备线程状态 克隆此图">
+  <meta name="description" content="在多线程情况下，多个线程争抢一个临界资源。为了线程的安全，需要对临界资源进行加锁，使多线程排队顺序执行  锁的类型乐观锁乐观锁是一种乐观的思想，每次去拿数据的时候都认为别人不会修改，所以不会上锁。即认为是读多写少，遇到并发写的可能性低。采取在写时先读出当前版本号，然后加锁操作（比较跟上一次的版本号，如果一样则更新），如果失败则要重复读-比较-写的操作。 java中的乐观锁基本都是通过CAS操作实">
+<meta name="keywords" content="锁">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jstack分析">
-<meta property="og:url" content="http://yoursite.com/2017/10/29/jstack分析/index.html">
+<meta property="og:title" content="java锁">
+<meta property="og:url" content="http://yoursite.com/2017/12/03/java锁/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="知识准备线程状态 克隆此图">
-<meta property="og:image" content="http://static.zybuluo.com/1234567890/hq0fg665cmkc22izj6gskyyi/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E5%9B%BE%20%282%29.png">
-<meta property="og:image" content="http://static.zybuluo.com/1234567890/6vvti587eb0cao7cf2we40mg/image_1btguh61c1qak1cjf132g18f4l7v23.png">
-<meta property="og:image" content="http://static.zybuluo.com/1234567890/to81h4g1bcj9ukt104qk81t9/image_1btgtndb819mtafv1srp1fp1qfp19.png">
-<meta property="og:image" content="http://static.zybuluo.com/1234567890/ijv2kdyx0vy83uoxqf3m5ivr/image_1btgtro215nsg31v0ajq71fuo1m.png">
-<meta property="og:image" content="http://static.zybuluo.com/1234567890/a9fyhg13j2u9cg74lcwq79sl/image_1btjncc46573595100ifvqgom2g.png">
-<meta property="og:updated_time" content="2017-11-17T09:01:40.000Z">
+<meta property="og:description" content="在多线程情况下，多个线程争抢一个临界资源。为了线程的安全，需要对临界资源进行加锁，使多线程排队顺序执行  锁的类型乐观锁乐观锁是一种乐观的思想，每次去拿数据的时候都认为别人不会修改，所以不会上锁。即认为是读多写少，遇到并发写的可能性低。采取在写时先读出当前版本号，然后加锁操作（比较跟上一次的版本号，如果一样则更新），如果失败则要重复读-比较-写的操作。 java中的乐观锁基本都是通过CAS操作实">
+<meta property="og:updated_time" content="2017-12-03T04:47:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jstack分析">
-<meta name="twitter:description" content="知识准备线程状态 克隆此图">
-<meta name="twitter:image" content="http://static.zybuluo.com/1234567890/hq0fg665cmkc22izj6gskyyi/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E5%9B%BE%20%282%29.png">
+<meta name="twitter:title" content="java锁">
+<meta name="twitter:description" content="在多线程情况下，多个线程争抢一个临界资源。为了线程的安全，需要对临界资源进行加锁，使多线程排队顺序执行  锁的类型乐观锁乐观锁是一种乐观的思想，每次去拿数据的时候都认为别人不会修改，所以不会上锁。即认为是读多写少，遇到并发写的可能性低。采取在写时先读出当前版本号，然后加锁操作（比较跟上一次的版本号，如果一样则更新），如果失败则要重复读-比较-写的操作。 java中的乐观锁基本都是通过CAS操作实">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -165,64 +160,59 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-jstack分析" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java锁" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      jstack分析
+      java锁
     </h1>
   
 
         
-        <a href="/2017/10/29/jstack分析/" class="archive-article-date">
-  	<time datetime="2017-10-29T10:11:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-29</time>
+        <a href="/2017/12/03/java锁/" class="archive-article-date">
+  	<time datetime="2017-12-03T04:46:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2><h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><p><img src="http://static.zybuluo.com/1234567890/hq0fg665cmkc22izj6gskyyi/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E5%9B%BE%20%282%29.png" alt="线程状态图.png-43.1kB"></p>
-<p><a href="https://www.processon.com/view/link/59f4258de4b06c8e1089cb28" target="_blank" rel="external">克隆此图</a></p>
-<a id="more"></a>
-<p>各状态说明：</p>
-<ul>
-<li>NEW<br>当线程对象创建时存在的状态，此时线程不可能执行</li>
-<li>RUNNABLE<br>当调用thread.start()后，线程变成为Runnable状态。只要得到CPU，就可以执行</li>
-<li>RUNNING<br>线程正在执行</li>
-<li>WAITING<br>执行thread.join()或在锁对象调用obj.wait()等情况就会进该状态，表明线程正处于等待某个资源或条件发生来唤醒自己</li>
-<li>TIME_WAIT<br>执行Thread.sleep(long)、thread.join(long)或obj.wait(long)等就会进该状态，与Waiting的区别在于Timed_Waiting的等待有时间限制</li>
-<li>BLOCKED<br>如果进入同步方法或同步代码块，没有获取到锁，则会进入该状态</li>
-<li>DEAD<br>线程执行完毕，或者抛出了未捕获的异常之后，会进入dead状态，表示该线程结束</li>
-</ul>
-<h3 id="对于jstack日志，我们要着重关注如下关键信息"><a href="#对于jstack日志，我们要着重关注如下关键信息" class="headerlink" title="对于jstack日志，我们要着重关注如下关键信息"></a>对于jstack日志，我们要着重关注如下关键信息</h3><ul>
-<li>Deadlock：<br>表示有死锁</li>
-<li>Waiting on condition<br>等待某个资源或条件发生来唤醒自己。具体需要结合jstacktrace来分析，比如线程正在sleep，网络读写繁忙而等待</li>
-<li>Blocked<br>阻塞</li>
-<li>Waiting on monitor entry<br>在等待获取锁</li>
-<li>in Object.wait()<br>获取锁后又执行obj.wait()放弃锁</li>
-</ul>
-<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><p>对于Waiting on monitor entry 和 in Object.wait()的详细描述</p>
-<blockquote>
-<p>Monitor是 Java中用以实现线程之间的互斥与协作的主要手段，它可以看成是对象或者 Class的锁。每一个对象都有，也仅有一个 monitor。从下图中可以看出，每个 Monitor在某个时刻，只能被一个线程拥有，该线程就是 “Active Thread”，而其它线程都是 “Waiting Thread”，分别在两个队列 “ Entry<br> Set”和 “Wait Set”里面等候。在 “Entry Set”中等待的线程状态是 “Waiting for monitor entry”，而在 “Wait Set”中等待的线程状态是 “in Object.wait()”</p>
+        <blockquote>
+<p>在多线程情况下，多个线程争抢一个临界资源。为了线程的安全，需要对临界资源进行加锁，使多线程排队顺序执行</p>
 </blockquote>
-<p><img src="http://static.zybuluo.com/1234567890/6vvti587eb0cao7cf2we40mg/image_1btguh61c1qak1cjf132g18f4l7v23.png" alt="线程状态"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Integer monitor = 42;</div><div class="line">public void test()&#123;</div><div class="line">    //entry set</div><div class="line">    synchronized(monitor)&#123;  //entry set</div><div class="line">        ...</div><div class="line">        Object.wait()    //wait set</div><div class="line">        ...   </div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><p>jstack pid</p>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="例1–多线程竞争synchronized锁"><a href="#例1–多线程竞争synchronized锁" class="headerlink" title="例1–多线程竞争synchronized锁"></a>例1–多线程竞争synchronized锁</h3><p><img src="http://static.zybuluo.com/1234567890/to81h4g1bcj9ukt104qk81t9/image_1btgtndb819mtafv1srp1fp1qfp19.png" alt="image_1btgtndb819mtafv1srp1fp1qfp19.png-113.3kB"></p>
-<p>很明显：线程1获取到锁，处于RUNNABLE状态，线程2处于BLOCK状态<br>1、locked <0x000000076bf62208>说明线程1对地址为0x000000076bf62208对象进行了加锁；<br>2、waiting to lock <0x000000076bf62208> 说明线程2在等待地址为0x000000076bf62208对象上的锁；<br>3、waiting for monitor entry [0x000000001e21f000]说明线程1是通过synchronized关键字进入了监视器的临界区，并处于”Entry Set”队列，等待monitor</0x000000076bf62208></0x000000076bf62208></p>
-<h3 id="实例2–通过wait挂起线程"><a href="#实例2–通过wait挂起线程" class="headerlink" title="实例2–通过wait挂起线程"></a>实例2–通过wait挂起线程</h3><p><img src="http://static.zybuluo.com/1234567890/ijv2kdyx0vy83uoxqf3m5ivr/image_1btgtro215nsg31v0ajq71fuo1m.png" alt="image_1btgtro215nsg31v0ajq71fuo1m.png-116.8kB"></p>
-<p>线程1和2都处于WAITING状态<br>1、线程1和2都是先locked <0x000000076bf62500>，再waiting on <0x000000076bf62500>，之所以先锁再等同一个对象，是因为wait方法需要先通过synchronized获得该地址对象的monitor；<br>2、waiting on <0x000000076bf62500>说明线程执行了wait方法之后，释放了monitor，进入到”Wait Set”队列，等待其它线程执行地址为0x000000076bf62500对象的notify方法，并唤醒自己</0x000000076bf62500></0x000000076bf62500></0x000000076bf62500></p>
-<h3 id="实例3"><a href="#实例3" class="headerlink" title="实例3"></a>实例3</h3><p><img src="http://static.zybuluo.com/1234567890/a9fyhg13j2u9cg74lcwq79sl/image_1btjncc46573595100ifvqgom2g.png" alt="image_1btjncc46573595100ifvqgom2g.png-71.7kB"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">this.service = new ThreadPoolExecutor(16, Integer.MAX_VALUE,</div><div class="line">                60L, TimeUnit.SECONDS,</div><div class="line">                new SynchronousQueue&lt;Runnable&gt;(),</div><div class="line">                new CustomPrefixThreadFactory(&quot;ruleService&quot;));</div></pre></td></tr></table></figure>
-<p>1、“TIMED_WAITING (parking)”中的 timed_waiting 指等待状态，但这里指定了时间，到达指定的时间后自动退出等待状态；parking指线程处于挂起中。<br>2、“waiting on condition”需要与堆栈中的“parking to wait for  <0x00000007079897a8> (a java.util.concurrent.SynchronousQueue$TransferStack)” 结合来看。首先，本线程肯定是在等待某个条件的发生，来把自己唤醒。其次，SynchronousQueue 并不是一个队列，只是线程之间移交信息的机制，当我们把一个元素放入到 SynchronousQueue 中时必须有另一个线程正在等待接受移交的任务，因此这就是本线程在等待的条件。<br>3、结合代码看，线程池等待任务的到来。TIMED_WAITING,因为60s后，该线程就会被回收</0x00000007079897a8></p>
-<h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><h3 id="如果大量线程在“waiting-for-monitor-entry”："><a href="#如果大量线程在“waiting-for-monitor-entry”：" class="headerlink" title="如果大量线程在“waiting for monitor entry”："></a>如果大量线程在“waiting for monitor entry”：</h3><p>可能是一个全局锁阻塞住了大量线程。如果短时间内打印的 thread dump 文件反映，随着时间流逝，waiting for monitor entry 的线程越来越多，没有减少的趋势，可能意味着<code>某些线程在临界区里呆的时间太长了，以至于越来越多新线程迟迟无法进入临界区</code>。</p>
-<h3 id="如果大量线程在“waiting-on-condition”："><a href="#如果大量线程在“waiting-on-condition”：" class="headerlink" title="如果大量线程在“waiting on condition”："></a>如果大量线程在“waiting on condition”：</h3><p>可能是它们又跑去获取第三方资源，<code>尤其是第三方网络资源，迟迟获取不到Response</code>，导致大量线程进入等待状态。<br>所以如果你发现有大量的线程都处在 Wait on condition，从线程堆栈看，正等待网络读写，这可能是一个<code>网络瓶颈的征兆</code>，因为网络阻塞导致线程无法执行。</p>
-<h3 id="如果说系统慢，"><a href="#如果说系统慢，" class="headerlink" title="如果说系统慢，"></a>如果说系统慢，</h3><p>那么要特别关注Blocked,Waiting on condition</p>
-<h3 id="如果说系统的cpu耗的高"><a href="#如果说系统的cpu耗的高" class="headerlink" title="如果说系统的cpu耗的高"></a>如果说系统的cpu耗的高</h3><p>那么肯定是线程执行有死循环，那么此时要关注下Runable状态。</p>
+<h2 id="锁的类型"><a href="#锁的类型" class="headerlink" title="锁的类型"></a>锁的类型</h2><h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>乐观锁是一种乐观的思想，每次去拿数据的时候都认为别人不会修改，所以不会上锁。即认为是<code>读多写少</code>，遇到并发写的可能性低。<br>采取在写时先读出当前版本号，然后加锁操作（比较跟上一次的版本号，如果一样则更新），如果失败则要重复读-比较-写的操作。</p>
+<p>java中的乐观锁基本都是通过CAS操作实现的，CAS是一种更新的原子操作，比较当前值跟传入值是否一样，一样则更新，否则失败。</p>
+<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>悲观锁是就是悲观思想，即认为写多，遇到并发写的可能性高，每次去拿数据的时候都认为别人会修改，所以每次在读写数据的时候都会上锁，这样别人想读写这个数据就会block直到拿到锁。</p>
+<p>java中的悲观锁就是Synchronized,AQS框架下的锁则是先尝试cas乐观锁去获取锁（轻量级锁–&gt;重量级锁），获取不到，才会转换为悲观锁，如RetreenLock。</p>
+<a id="more"></a>
+<h2 id="阻塞的代价"><a href="#阻塞的代价" class="headerlink" title="阻塞的代价"></a>阻塞的代价</h2><p>当一个线程进入了同步代码块，其他的线程就必须阻塞，这是必须要保存线程现场。当线程唤醒时，就需要恢复现场，然后再往下执行。这种切换会消耗大量的系统资源。</p>
+<ul>
+<li><p>如果线程状态切换是一个高频操作时，这将会消耗很多CPU处理时间；</p>
+</li>
+<li><p>如果对于那些需要同步的简单的代码块，获取锁挂起操作消耗的时间比用户代码执行的时间还要长，这种同步策略显然非常糟糕的。</p>
+</li>
+</ul>
+<p>为了缓解上述性能问题，JVM从1.5开始，引入了轻量锁与偏向锁，默认启用了自旋锁，他们都属于乐观锁。</p>
+<h2 id="java的锁"><a href="#java的锁" class="headerlink" title="java的锁"></a>java的锁</h2><h3 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h3><p>如果持有锁的线程能在很<code>短时间</code>内释放锁资源，那么那些等待竞争锁的线程就不需要做内核态和用户态之间的切换进入阻塞挂起状态，它们只需要等一等（自旋），等持有锁的线程释放锁后即可立即获取锁，这样就避免用户线程和内核的切换的消耗。</p>
+<p>线程自旋是需要消耗cup的，说白了就是让cup在做无用功，线程不能一直占用cup自旋做无用功，所以需要设定一个自旋等待的最大时间</p>
+<p>如果自旋时间超过自旋等待的最大时间扔没有释放锁，这时争用线程会停止自旋进入阻塞状态</p>
+<h3 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h3><p>如果在运行过程中，同步锁只有一个线程访问，<code>不存在多线程争用</code>的情况，则线程是不需要触发同步的，这种情况下，就会给线程加一个偏向锁。<br>如果在运行过程中，遇到了其他线程抢占锁，则持有偏向锁的线程会被挂起，JVM会消除它身上的偏向锁，将锁恢复到标准的轻量级锁。</p>
+<h4 id="偏向锁的实现"><a href="#偏向锁的实现" class="headerlink" title="偏向锁的实现"></a>偏向锁的实现</h4><p>1、访问Mark Word中偏向锁的标识是否设置成1，锁标志位是否为01，确认为可偏向状态。</p>
+<p>2、如果为可偏向状态，则测试线程ID是否指向当前线程，如果是，进入步骤5，否则进入步骤3。</p>
+<p>3、如果线程ID并未指向当前线程，则通过CAS操作竞争锁。如果竞争成功，则将Mark Word中线程ID设置为当前线程ID，然后执行5；如果竞争失败，执行4。</p>
+<p>4、如果CAS获取偏向锁失败，则表示有竞争。当到达全局安全点（safepoint）时获得偏向锁的线程被挂起，偏向锁升级为轻量级锁，然后被阻塞在安全点的线程继续往下执行同步代码。（撤销偏向锁的时候会导致stop the word）</p>
+<p>5、执行同步代码。</p>
+<h4 id="jvm开启-关闭偏向锁"><a href="#jvm开启-关闭偏向锁" class="headerlink" title="jvm开启/关闭偏向锁"></a>jvm开启/关闭偏向锁</h4><p>开启偏向锁：-XX:+UseBiasedLocking -XX:BiasedLockingStartupDelay=0<br>关闭偏向锁：-XX:-UseBiasedLocking</p>
+<h2 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h2><p>这就是自旋锁，尝试获取锁的线程，在没有获得锁的时候，不被挂起，而转而去执行一个空循环，即自旋。在若干个自旋后，如果还没有获得锁，则才被挂起，获得锁，则执行代码。</p>
+<h2 id="重量级锁Synchronized"><a href="#重量级锁Synchronized" class="headerlink" title="重量级锁Synchronized"></a>重量级锁Synchronized</h2><p>排队执行</p>
+<h2 id="锁优化"><a href="#锁优化" class="headerlink" title="锁优化"></a>锁优化</h2><h3 id="减少锁的时间"><a href="#减少锁的时间" class="headerlink" title="减少锁的时间"></a>减少锁的时间</h3><p>不需要同步执行的代码，能不放在同步快里面执行就不要放在同步快内，可以让锁尽快释放；</p>
+<h3 id="减少锁的粒度"><a href="#减少锁的粒度" class="headerlink" title="减少锁的粒度"></a>减少锁的粒度</h3><p>它的思想是将物理上的一个锁，拆成逻辑上的多个锁，增加并行度，从而降低锁竞争。它的思想也是用空间来换时间——ConcurrentHashMap、LinkedBlockingQueue</p>
+<p>拆锁的粒度不能无限拆，最多可以将一个锁拆为当前cup数量个锁即可；</p>
+<h3 id="锁粗化"><a href="#锁粗化" class="headerlink" title="锁粗化"></a>锁粗化</h3><p>假如有一个循环，循环内的操作需要加锁，我们应该把锁放到循环外面，否则每次进出循环，都进出一次临界区，效率是非常差的；</p>
+<h3 id="使用读写锁"><a href="#使用读写锁" class="headerlink" title="使用读写锁"></a>使用读写锁</h3><p>ReentrantReadWriteLock 是一个读写锁，读操作加读锁，可以并发读，写操作使用写锁，只能单线程写；</p>
 
       
 
@@ -262,6 +252,17 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">锁</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -312,7 +313,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/29/jstack分析/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/03/java锁/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -326,18 +327,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2017/11/17/设计模式/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          设计模式
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/26/性能测试-系统消耗分析/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">性能测试--系统消耗分析</div>
+    <a href="/2017/11/26/Netty学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Netty学习</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -364,7 +356,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识准备"><span class="toc-number">1.</span> <span class="toc-text">知识准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线程状态"><span class="toc-number">1.1.</span> <span class="toc-text">线程状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对于jstack日志，我们要着重关注如下关键信息"><span class="toc-number">1.2.</span> <span class="toc-text">对于jstack日志，我们要着重关注如下关键信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#区别"><span class="toc-number">1.2.1.</span> <span class="toc-text">区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令"><span class="toc-number">1.3.</span> <span class="toc-text">命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-number">2.</span> <span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#例1–多线程竞争synchronized锁"><span class="toc-number">2.1.</span> <span class="toc-text">例1–多线程竞争synchronized锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例2–通过wait挂起线程"><span class="toc-number">2.2.</span> <span class="toc-text">实例2–通过wait挂起线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例3"><span class="toc-number">2.3.</span> <span class="toc-text">实例3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#经验"><span class="toc-number">3.</span> <span class="toc-text">经验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如果大量线程在“waiting-for-monitor-entry”："><span class="toc-number">3.1.</span> <span class="toc-text">如果大量线程在“waiting for monitor entry”：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果大量线程在“waiting-on-condition”："><span class="toc-number">3.2.</span> <span class="toc-text">如果大量线程在“waiting on condition”：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果说系统慢，"><span class="toc-number">3.3.</span> <span class="toc-text">如果说系统慢，</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果说系统的cpu耗的高"><span class="toc-number">3.4.</span> <span class="toc-text">如果说系统的cpu耗的高</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#锁的类型"><span class="toc-number">1.</span> <span class="toc-text">锁的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#乐观锁"><span class="toc-number">1.1.</span> <span class="toc-text">乐观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#悲观锁"><span class="toc-number">1.2.</span> <span class="toc-text">悲观锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#阻塞的代价"><span class="toc-number">2.</span> <span class="toc-text">阻塞的代价</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java的锁"><span class="toc-number">3.</span> <span class="toc-text">java的锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自旋锁"><span class="toc-number">3.1.</span> <span class="toc-text">自旋锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#偏向锁"><span class="toc-number">3.2.</span> <span class="toc-text">偏向锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#偏向锁的实现"><span class="toc-number">3.2.1.</span> <span class="toc-text">偏向锁的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jvm开启-关闭偏向锁"><span class="toc-number">3.2.2.</span> <span class="toc-text">jvm开启/关闭偏向锁</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#轻量级锁"><span class="toc-number">4.</span> <span class="toc-text">轻量级锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重量级锁Synchronized"><span class="toc-number">5.</span> <span class="toc-text">重量级锁Synchronized</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#锁优化"><span class="toc-number">6.</span> <span class="toc-text">锁优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#减少锁的时间"><span class="toc-number">6.1.</span> <span class="toc-text">减少锁的时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#减少锁的粒度"><span class="toc-number">6.2.</span> <span class="toc-text">减少锁的粒度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#锁粗化"><span class="toc-number">6.3.</span> <span class="toc-text">锁粗化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用读写锁"><span class="toc-number">6.4.</span> <span class="toc-text">使用读写锁</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -380,7 +372,7 @@ var _hmt = _hmt || [];
   
 
   
-  <div id="SOHUCS" sid="jstack分析" ></div> 
+  <div id="SOHUCS" sid="java锁" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cyt94q09g"; 
