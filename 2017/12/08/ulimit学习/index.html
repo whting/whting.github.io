@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/9 | Hexo</title>
+  <title>ulimit学习 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="十年磨一剑，不露锋芒">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2017/09/index.html">
+  <meta name="description" content="ulimit 用于限制 shell 启动进程所占用的资源，支持以下各种类型的限制：所创建的内核文件的大小、进程数据块的大小、Shell 进程创建文件的大小、内存锁住的大小、常驻内存集的大小、打开文件描述符的数量、分配堆栈的最大大小、CPU 时间、单个用户的最大线程数、Shell 进程所能使用的最大虚拟内存，同时，它支持硬资源和软资源的限制。“too many files open”">
+<meta name="keywords" content="ulimit,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ulimit学习">
+<meta property="og:url" content="http://yoursite.com/2017/12/08/ulimit学习/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="十年磨一剑，不露锋芒">
+<meta property="og:description" content="ulimit 用于限制 shell 启动进程所占用的资源，支持以下各种类型的限制：所创建的内核文件的大小、进程数据块的大小、Shell 进程创建文件的大小、内存锁住的大小、常驻内存集的大小、打开文件描述符的数量、分配堆栈的最大大小、CPU 时间、单个用户的最大线程数、Shell 进程所能使用的最大虚拟内存，同时，它支持硬资源和软资源的限制。“too many files open”">
+<meta property="og:updated_time" content="2017-12-08T06:27:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="十年磨一剑，不露锋芒">
+<meta name="twitter:title" content="ulimit学习">
+<meta name="twitter:description" content="ulimit 用于限制 shell 启动进程所占用的资源，支持以下各种类型的限制：所创建的内核文件的大小、进程数据块的大小、Shell 进程创建文件的大小、内存锁住的大小、常驻内存集的大小、打开文件描述符的数量、分配堆栈的最大大小、CPU 时间、单个用户的最大线程数、Shell 进程所能使用的最大虚拟内存，同时，它支持硬资源和软资源的限制。“too many files open”">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -158,125 +160,229 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ulimit学习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/26/性能测试-系统消耗分析/" class="archive-article-date">
-  	<time datetime="2017-09-26T03:29:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/26/性能测试-系统消耗分析/">性能测试--系统消耗分析</a>
+    <h1 class="article-title" itemprop="name">
+      ulimit学习
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/26/性能测试-打开限制/" class="archive-article-date">
-  	<time datetime="2017-09-26T03:29:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
+        
+        <a href="/2017/12/08/ulimit学习/" class="archive-article-date">
+  	<time datetime="2017-12-08T06:26:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/26/性能测试-打开限制/">性能测试--打开限制</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>ulimit 用于限制 shell 启动进程所占用的资源，支持以下各种类型的限制：所创建的内核文件的大小、进程数据块的大小、Shell 进程创建文件的大小、内存锁住的大小、常驻内存集的大小、打开文件描述符的数量、分配堆栈的最大大小、CPU 时间、单个用户的最大线程数、Shell 进程所能使用的最大虚拟内存，同时，它支持硬资源和软资源的限制。<br>“too many files open”<br><a id="more"></a></p>
+</blockquote>
+<h2 id="ulimit-命令"><a href="#ulimit-命令" class="headerlink" title="ulimit 命令"></a>ulimit 命令</h2><h3 id="ulimit-有软限制和硬限制之分"><a href="#ulimit-有软限制和硬限制之分" class="headerlink" title="ulimit 有软限制和硬限制之分"></a>ulimit 有软限制和硬限制之分</h3><ul>
+<li>软限制：任何用户都可以修改软限制，但是软限制不能大于硬限制；</li>
+<li>硬限制：普通用户可以降低硬限制，但是只有 root 用户可以提高硬限制；</li>
+</ul>
+<p>还有一点要注意：ulimit 的限制仅针对当前 shell 进程及其所有子进程，每个 shell 实例的 ulimit 互不影响！</p>
+<h3 id="ulimit-常用参数"><a href="#ulimit-常用参数" class="headerlink" title="ulimit 常用参数"></a>ulimit 常用参数</h3><ul>
+<li>ulimit -a：查看当前 shell 的所有资源限制，默认显示软限制</li>
+<li>ulimit -Sa：查看当前 shell 的所有资源限制，-S 表示显示软限制</li>
+<li>ulimit -Ha：查看当前 shell 的所有资源限制，-H 表示显示硬限制</li>
+<li>ulimit -n：显示当前可打开的文件描述符数量，软限制</li>
+<li>ulimit -Hn：显示当前可打开的文件描述符数量，硬限制</li>
+<li>ulimit -n 10240：修改可打开的文件描述符数为 10240，默认软限制，除非指明参数 -H</li>
+<li>ulimit -Hn 51200：修改可打开的文件描述符数为 51200，硬限制（如果是提高硬限制，则需要 root 权限）</li>
+<li>ulimit -s 102400：修改堆栈大小的软限制为 102400 kbytes 即 100 MB</li>
+<li>ulimit -Hs unlimited：修改堆栈大小的硬限制为 unlimited，即不限制上限</li>
+</ul>
+<h2 id="limits-conf"><a href="#limits-conf" class="headerlink" title="limits.conf"></a>limits.conf</h2><p>主配置文件：/etc/security/limits.conf及分段配置文件：/etc/security/limits.d/*.conf；</p>
+<p>当用户登录 shell 时：</p>
+<ul>
+<li>先应用/etc/security/limits.conf中的限制值，包括软限制和硬限制；</li>
+<li>然后再应用/etc/profile、/etc/bashrc、~/.bash_profile、~/.bashrc中的限制。</li>
+</ul>
+<p>修改/etc/security/limits.conf文件后，需要<code>重新登录</code> shell 才能生效，而<code>ulimit是立即生效的</code>。</p>
+<p>特别的，nofile 不仅取决于 /etc/security/limits.conf 的限制，还与内核可打开的文件描述符数目有关；<br>也就是说，当前系统可打开的最大文件描述符数量不可大于内核能够打开的文件描述符数量，这个值与内核参数有关；</p>
+<h3 id="修改内核参数"><a href="#修改内核参数" class="headerlink" title="修改内核参数"></a>修改内核参数</h3><p>在 /etc/sysctl.conf 中添加fs.file-max = 10240000，然后使用sysctl -p可立即生效，否则重启后才能生效。<br>查看当前文件描述符使用情况：cat /proc/sys/fs/file-nr：三个值分别表示：已分配的句柄数、已分配未使用的句柄数、file-max 值。</p>
+<h2 id="排查问题"><a href="#排查问题" class="headerlink" title="排查问题"></a>排查问题</h2><p>lsof -n |awk ‘{print $2}’|sort|uniq -c |sort -nr|more<br>其中第一行是打开的文件句柄数量，第二行是进程号。得到进程号后，我们可以通过ps命令得到进程的详细内容。</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://static.zybuluo.com/1234567890/2tbovtv5q0jgvgsb003e3g0a/image_1bmjmgqun1korrch1t311r1vhlr2g.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://static.zybuluo.com/1234567890/koi9lkyw5k4y27hxlv9ng3yp/image_1bmjmgbkr19babd9h01difdnl23.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能测试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ulimit</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/26/性能调优总结/" class="archive-article-date">
-  	<time datetime="2017-09-26T03:26:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/26/性能调优总结/">性能调优总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能调优</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/08/ulimit学习/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/12/03/java锁/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java锁</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ulimit-命令"><span class="toc-number">1.</span> <span class="toc-text">ulimit 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ulimit-有软限制和硬限制之分"><span class="toc-number">1.1.</span> <span class="toc-text">ulimit 有软限制和硬限制之分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ulimit-常用参数"><span class="toc-number">1.2.</span> <span class="toc-text">ulimit 常用参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#limits-conf"><span class="toc-number">2.</span> <span class="toc-text">limits.conf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改内核参数"><span class="toc-number">2.1.</span> <span class="toc-text">修改内核参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排查问题"><span class="toc-number">3.</span> <span class="toc-text">排查问题</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="ulimit学习" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cyt94q09g"; 
+var conf = "prod_d9beaec89e827e0a93197e3abf62faba"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -299,8 +405,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
