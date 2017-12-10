@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | Hexo</title>
+  <title>Drools源码阅读 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="基本类KieService就是一个中心，通过它来获取的各种对象来完成规则构建、管理和执行等操作 KieContainer就是一个KieBase的容器。通过KieProject来查找KieModule定义的信息，并根据这些信息构造KieBase和KieSession。 KieModulekmodule.xml文件定义 KieProject来初始化、构造KieModule，并将KieModule存放到">
+<meta name="keywords" content="Drools">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/08/03/hello-world/index.html">
+<meta property="og:title" content="Drools源码阅读">
+<meta property="og:url" content="http://yoursite.com/2017/12/10/Drools源码阅读/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta property="og:updated_time" content="2017-08-03T06:24:39.000Z">
+<meta property="og:description" content="基本类KieService就是一个中心，通过它来获取的各种对象来完成规则构建、管理和执行等操作 KieContainer就是一个KieBase的容器。通过KieProject来查找KieModule定义的信息，并根据这些信息构造KieBase和KieSession。 KieModulekmodule.xml文件定义 KieProject来初始化、构造KieModule，并将KieModule存放到">
+<meta property="og:image" content="http://static.zybuluo.com/1234567890/9d1xwlsfkzdkohjsfeofnul8/image_1c0o0q8nl1qnt11rm1eappff180u19.png">
+<meta property="og:updated_time" content="2017-12-10T11:32:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Drools源码阅读">
+<meta name="twitter:description" content="基本类KieService就是一个中心，通过它来获取的各种对象来完成规则构建、管理和执行等操作 KieContainer就是一个KieBase的容器。通过KieProject来查找KieModule定义的信息，并根据这些信息构造KieBase和KieSession。 KieModulekmodule.xml文件定义 KieProject来初始化、构造KieModule，并将KieModule存放到">
+<meta name="twitter:image" content="http://static.zybuluo.com/1234567890/9d1xwlsfkzdkohjsfeofnul8/image_1c0o0q8nl1qnt11rm1eappff180u19.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,35 +162,42 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Drools源码阅读" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      Drools源码阅读
     </h1>
   
 
         
-        <a href="/2017/08/03/hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-03T06:24:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-03</time>
+        <a href="/2017/12/10/Drools源码阅读/" class="archive-article-date">
+  	<time datetime="2017-12-10T11:30:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h2 id="基本类"><a href="#基本类" class="headerlink" title="基本类"></a>基本类</h2><h4 id="KieService"><a href="#KieService" class="headerlink" title="KieService"></a>KieService</h4><pre><code>就是一个中心，通过它来获取的各种对象来完成规则构建、管理和执行等操作
+</code></pre><h4 id="KieContainer"><a href="#KieContainer" class="headerlink" title="KieContainer"></a>KieContainer</h4><pre><code>就是一个KieBase的容器。通过KieProject来查找KieModule定义的信息，并根据这些信息构造KieBase和KieSession。
+</code></pre><h4 id="KieModule"><a href="#KieModule" class="headerlink" title="KieModule"></a>KieModule</h4><pre><code>kmodule.xml文件定义
+</code></pre><h4 id="KieProject"><a href="#KieProject" class="headerlink" title="KieProject"></a>KieProject</h4><pre><code>来初始化、构造KieModule，并将KieModule存放到KieRepository中
+</code></pre><h4 id="KnowledgeBuilder"><a href="#KnowledgeBuilder" class="headerlink" title="KnowledgeBuilder"></a>KnowledgeBuilder</h4><pre><code>加载源文件(.drl、.bpmn2、.xls)等，将它们转化为知识库的规则和流程定义的知识包
+</code></pre><h4 id="KieBase"><a href="#KieBase" class="headerlink" title="KieBase"></a>KieBase</h4><pre><code> 就是一个知识仓库，包含了若干的规则、流程、方法等,并不包含运行时的数据之类的
+创建KieBase是一个成本非常高的事情，KieBase会建立知识（规则、流程）仓库，KieBase会建立缓存
+</code></pre><h4 id="KieSession"><a href="#KieSession" class="headerlink" title="KieSession"></a>KieSession</h4><pre><code>就是一个跟Drools引擎打交道的会话，包含运行时数据，包含“事实 Fact”，并对运行时数据事实进行规则运算
+创建KieSession则是一个成本非常低的事情，KieSession则不必缓存
+</code></pre><h4 id="KieRepository"><a href="#KieRepository" class="headerlink" title="KieRepository"></a>KieRepository</h4><pre><code>一个单例对象，它是一个存放KieModule的仓库
+</code></pre><p>　<a id="more"></a></p>
+<h2 id="规则加载过程"><a href="#规则加载过程" class="headerlink" title="规则加载过程"></a>规则加载过程</h2><p><img src="http://static.zybuluo.com/1234567890/9d1xwlsfkzdkohjsfeofnul8/image_1c0o0q8nl1qnt11rm1eappff180u19.png" alt="image_1c0o0q8nl1qnt11rm1eappff180u19.png-44kB"></p>
+<p>1、KieProject–&gt;ClasspathKieProject:默认加载src/main/resources/META-INF/kmodule.xml,解析成KieModuleModel<br>2、KieModuleModel 会将文件解析为KieBaseModel<br>3、KieBaseModel 会进一步解析KieSessionModel<br>4、KnowledgeBuilder将KieBaseModel构造为知识包<br>5、KieBase加载知识包，建立知识（规则、流程）仓库<br>6、将KieBase交给KieContainer管理</p>
+<h2 id="java代码加载知识包有三种方式"><a href="#java代码加载知识包有三种方式" class="headerlink" title="java代码加载知识包有三种方式"></a>java代码加载知识包有三种方式</h2><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><p>KieRepository 会自动去加载src/main/resources/META-INF/kmodule.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">KieServices ks = KieServices.Factory.get();</div><div class="line">KieContainer kContainer = ks.getKieClasspathContainer();</div><div class="line">KieSession kSession = kContainer.newKieSession(&quot;base_rule&quot;);</div><div class="line">Item item = new Item(&quot;A&quot;, 123.0, 234.0);</div><div class="line">kSession.insert(item);</div><div class="line">kSession.fireAllRules();</div></pre></td></tr></table></figure></p>
+<h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><p>不用KieContainer管理KieBase,并’手动’将知识包放入KieBase<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">String drl = &quot;package myfirstproject.rules\n&quot; +</div><div class="line">        &quot;import cn.wht.drools.model.Item\n&quot; +</div><div class="line">        &quot;\n&quot; +</div><div class="line">        &quot;\n&quot; +</div><div class="line">        &quot;rule \&quot;Classify Item - Low Range\&quot;\n&quot; +</div><div class="line">        &quot;    when\n&quot; +</div><div class="line">        &quot;        $i: Item(cost &lt; 200)\n&quot; +</div><div class="line">        &quot;    then\n&quot; +</div><div class="line">        &quot;        $i.setCategory(Item.Category.LOW_RANGE);\n&quot; +</div><div class="line">        &quot;end\n&quot;;</div><div class="line"></div><div class="line">KnowledgeBuilder knowledgeBuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();</div><div class="line">knowledgeBuilder.add(new ByteArrayResource(drl.getBytes()), ResourceType.DRL);</div><div class="line"></div><div class="line">InternalKnowledgeBase kBase = KnowledgeBaseFactory.newKnowledgeBase();</div><div class="line">kBase.addPackages(knowledgeBuilder.getKnowledgePackages());</div><div class="line">KieSession kSession = createKnowledgeSession(kBase);</div><div class="line">Item item = new Item(&quot;A&quot;, 123.0, 234.0);</div><div class="line">kSession.insert(item);</div><div class="line">kSession.fireAllRules();</div></pre></td></tr></table></figure></p>
+<h3 id="方式三"><a href="#方式三" class="headerlink" title="方式三"></a>方式三</h3><p>自己维护KieRepository，加载指定路径的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">String drl = &quot;package myfirstproject.rules\n&quot; +</div><div class="line">        &quot;import cn.wht.drools.model.Item\n&quot; +</div><div class="line">        &quot;\n&quot; +</div><div class="line">        &quot;\n&quot; +</div><div class="line">        &quot;rule \&quot;Classify Item - Low Range\&quot;\n&quot; +</div><div class="line">        &quot;    when\n&quot; +</div><div class="line">        &quot;        $i: Item(cost &lt; 200)\n&quot; +</div><div class="line">        &quot;    then\n&quot; +</div><div class="line">        &quot;        $i.setCategory(Item.Category.LOW_RANGE);\n&quot; +</div><div class="line">        &quot;end\n&quot;;</div><div class="line"></div><div class="line"></div><div class="line">KieServices ks = KieServices.Factory.get();</div><div class="line">KieFileSystem kfs = ks.newKieFileSystem();</div><div class="line">kfs.write( &quot;src/main/resources/KBase1/test-rule.drl&quot;, drl );</div><div class="line"></div><div class="line">final KieBuilder kieBuilder = ks.newKieBuilder( kfs );</div><div class="line">final List&lt;Message&gt; messages = kieBuilder.buildAll().getResults().getMessages();</div><div class="line">if ( !messages.isEmpty() ) &#123;</div><div class="line">    for ( final Message m : messages ) &#123;</div><div class="line">        System.out.println( m.getText() );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">KieContainer kieContainer = ks.newKieContainer(kieBuilder.getKieModule().getReleaseId());</div><div class="line">KieSession kieSession = kieContainer.newKieSession();</div><div class="line">Item item = new Item(&quot;A&quot;, 123.0, 234.0);</div><div class="line">kieSession.insert(item);</div><div class="line">kieSession.fireAllRules();</div></pre></td></tr></table></figure></p>
 
       
 
@@ -227,6 +237,17 @@ var _hmt = _hmt || [];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Drools</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -277,7 +298,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/03/hello-world/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/10/Drools源码阅读/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,15 +312,20 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2017/08/07/规则引擎/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/12/10/Drools语法/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          规则引擎
+          Drools语法
         
       </div>
     </a>
   
+  
+    <a href="/2017/12/08/ulimit学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ulimit学习</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -324,7 +350,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本类"><span class="toc-number">1.</span> <span class="toc-text">基本类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#KieService"><span class="toc-number">1.0.1.</span> <span class="toc-text">KieService</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#KieContainer"><span class="toc-number">1.0.2.</span> <span class="toc-text">KieContainer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#KieModule"><span class="toc-number">1.0.3.</span> <span class="toc-text">KieModule</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#KieProject"><span class="toc-number">1.0.4.</span> <span class="toc-text">KieProject</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#KnowledgeBuilder"><span class="toc-number">1.0.5.</span> <span class="toc-text">KnowledgeBuilder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#KieBase"><span class="toc-number">1.0.6.</span> <span class="toc-text">KieBase</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#KieSession"><span class="toc-number">1.0.7.</span> <span class="toc-text">KieSession</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#KieRepository"><span class="toc-number">1.0.8.</span> <span class="toc-text">KieRepository</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#规则加载过程"><span class="toc-number">2.</span> <span class="toc-text">规则加载过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java代码加载知识包有三种方式"><span class="toc-number">3.</span> <span class="toc-text">java代码加载知识包有三种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方式一"><span class="toc-number">3.1.</span> <span class="toc-text">方式一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方式二"><span class="toc-number">3.2.</span> <span class="toc-text">方式二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方式三"><span class="toc-number">3.3.</span> <span class="toc-text">方式三</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -340,7 +366,7 @@ var _hmt = _hmt || [];
   
 
   
-  <div id="SOHUCS" sid="hello-world" ></div> 
+  <div id="SOHUCS" sid="Drools源码阅读" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cyt94q09g"; 

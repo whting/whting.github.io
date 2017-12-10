@@ -160,6 +160,164 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Drools语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/10/Drools语法/">Drools语法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/10/Drools语法/" class="archive-article-date">
+  	<time datetime="2017-12-10T11:31:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="添加与外部变量交互"><a href="#添加与外部变量交互" class="headerlink" title="添加与外部变量交互"></a>添加与外部变量交互</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">glabal ConfigService configService;</div></pre></td></tr></table></figure>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Drools</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/10/Drools语法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Drools源码阅读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/10/Drools源码阅读/">Drools源码阅读</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/10/Drools源码阅读/" class="archive-article-date">
+  	<time datetime="2017-12-10T11:30:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基本类"><a href="#基本类" class="headerlink" title="基本类"></a>基本类</h2><h4 id="KieService"><a href="#KieService" class="headerlink" title="KieService"></a>KieService</h4><pre><code>就是一个中心，通过它来获取的各种对象来完成规则构建、管理和执行等操作
+</code></pre><h4 id="KieContainer"><a href="#KieContainer" class="headerlink" title="KieContainer"></a>KieContainer</h4><pre><code>就是一个KieBase的容器。通过KieProject来查找KieModule定义的信息，并根据这些信息构造KieBase和KieSession。
+</code></pre><h4 id="KieModule"><a href="#KieModule" class="headerlink" title="KieModule"></a>KieModule</h4><pre><code>kmodule.xml文件定义
+</code></pre><h4 id="KieProject"><a href="#KieProject" class="headerlink" title="KieProject"></a>KieProject</h4><pre><code>来初始化、构造KieModule，并将KieModule存放到KieRepository中
+</code></pre><h4 id="KnowledgeBuilder"><a href="#KnowledgeBuilder" class="headerlink" title="KnowledgeBuilder"></a>KnowledgeBuilder</h4><pre><code>加载源文件(.drl、.bpmn2、.xls)等，将它们转化为知识库的规则和流程定义的知识包
+</code></pre><h4 id="KieBase"><a href="#KieBase" class="headerlink" title="KieBase"></a>KieBase</h4><pre><code> 就是一个知识仓库，包含了若干的规则、流程、方法等,并不包含运行时的数据之类的
+创建KieBase是一个成本非常高的事情，KieBase会建立知识（规则、流程）仓库，KieBase会建立缓存
+</code></pre><h4 id="KieSession"><a href="#KieSession" class="headerlink" title="KieSession"></a>KieSession</h4><pre><code>就是一个跟Drools引擎打交道的会话，包含运行时数据，包含“事实 Fact”，并对运行时数据事实进行规则运算
+创建KieSession则是一个成本非常低的事情，KieSession则不必缓存
+</code></pre><h4 id="KieRepository"><a href="#KieRepository" class="headerlink" title="KieRepository"></a>KieRepository</h4><pre><code>一个单例对象，它是一个存放KieModule的仓库
+</code></pre><p></p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Drools</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/10/Drools源码阅读/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ulimit学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -749,163 +907,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-性能调优总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/26/性能调优总结/">性能调优总结</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/26/性能调优总结/" class="archive-article-date">
-  	<time datetime="2017-09-26T03:26:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>5w+1h就是对所做工作进行科学的分析，对某一工作在调查研究的基础上：<br>1、就其工作内容(What)<br>2、责任者(Who)<br>3、工作岗位(Where)<br>4、工作时间(When<br>5、怎样操作(How<br>6、以及为何这样做(Why)<br>即”5W”、”1H”进行书面描述，并按此描述进行操作，达到完成职务任务的目标。(来源“百度百科”)</p>
-</blockquote>
-<h3 id="什么是性能调优-what"><a href="#什么是性能调优-what" class="headerlink" title="什么是性能调优?(what)"></a>什么是性能调优?(what)</h3><p>计算机的体系结构。<br><img src="http://s1.51cto.com/wyfs02/M00/7D/F9/wKioL1b0ng_RkEVBAAC4Gi6CYBc754.jpg-wh_651x-s_1599213270.jpg" alt="计算机的体系结构"><br>如上图，简单来说包括三块：硬件、操作系统、应用程序。其实，性能调优就是调节这些内容，包括硬件、操作系统、应用程序。</p>
-<p>硬件包括：CPU、内存、磁盘、网卡、其它……，<br>操作系统包括:进程、虚拟内存、文件系统、网络、其它……，<br>应用程序:常见的有Apache、MySQL、Nginx、Memcahed等。</p>
-<p>那什么是性能调优呢?</p>
-<blockquote>
-<p>性能调优就是对计算机硬件、操作系统和应用有相当深入的了解，调节三者之间的关系，实现整个系统(包括硬件、操作系统、应用)的性能最大化，并能不断的满足现有的业务需求。</p>
-</blockquote>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能调优</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/26/性能调优总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Cassandra学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/25/Cassandra学习/">Cassandra学习</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/25/Cassandra学习/" class="archive-article-date">
-  	<time datetime="2017-08-25T07:55:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Cassandra相较于关系型数据库的优势：快速地执行在海量数据上的读取或写入请求。</p>
-<h3 id="Cassandra内部机制"><a href="#Cassandra内部机制" class="headerlink" title="Cassandra内部机制"></a>Cassandra内部机制</h3><p>在Cassandra中有三个非常重要的数据结构：记录在内存中的Memtable，以及保存在磁盘中的Commit Log和SSTable。Memtable在内存中记录着最近所做的修改，而SSTable则在磁盘上记录着Cassandra所承载的绝大部分数据。在SSTable内部记录着一系列根据键排列的一系列键值对。通常情况下，一个Cassandra表会对应着一个Memtable和多个SSTable。除此之外，为了提高对数据进行搜索和访问的速度，Cassandra还允许软件开发人员在特定的列上创建索引。<br></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Cassandra</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/25/Cassandra学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1004,11 +1005,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+                <a href="javascript:void(0)" class="js-tag color5">Cassandra</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cassandra</a>
+                <a href="javascript:void(0)" class="js-tag color2">Drools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1020,15 +1025,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Cache</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">缓存</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1044,15 +1049,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">锁</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ulimit</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">锁</a>
               </li>
              
               <li class="article-tag-list-item">
