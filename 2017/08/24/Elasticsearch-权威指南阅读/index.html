@@ -15,12 +15,12 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/24/Elasticsearch-权威指南阅读/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Elasticsearch: 权威指南 ES特征 一个分布式的实时文档存储，每个字段 可以被索引与搜索 一个分布式实时分析搜索引擎 能胜任上百个服务节点的扩展，并支持 PB 级别的结构化或者非结构化数据 RESTful API with JSON over HTTP">
-<meta property="og:image" content="http://yoursite.com/2017/08/24/Elasticsearch-权威指南阅读/Elasticsearch-权威指南/index.png">
-<meta property="og:updated_time" content="2017-12-13T07:42:31.000Z">
+<meta property="og:image" content="http://yoursite.com/2017/08/24/Elasticsearch-权威指南阅读/index.png">
+<meta property="og:updated_time" content="2017-12-13T07:51:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Elasticsearch: 权威指南阅读">
 <meta name="twitter:description" content="Elasticsearch: 权威指南 ES特征 一个分布式的实时文档存储，每个字段 可以被索引与搜索 一个分布式实时分析搜索引擎 能胜任上百个服务节点的扩展，并支持 PB 级别的结构化或者非结构化数据 RESTful API with JSON over HTTP">
-<meta name="twitter:image" content="http://yoursite.com/2017/08/24/Elasticsearch-权威指南阅读/Elasticsearch-权威指南/index.png">
+<meta name="twitter:image" content="http://yoursite.com/2017/08/24/Elasticsearch-权威指南阅读/index.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -190,10 +190,11 @@ var _hmt = _hmt || [];
 <li>RESTful API with JSON over HTTP</li>
 </ul>
 <a id="more"></a>
-<h2 id="Elasticsearch的索引思路"><a href="#Elasticsearch的索引思路" class="headerlink" title="Elasticsearch的索引思路"></a>Elasticsearch的索引思路</h2><p><img src="/2017/08/24/Elasticsearch-权威指南阅读/Elasticsearch-权威指南/index.png" alt="索引"></p>
+<h2 id="Elasticsearch的索引思路"><a href="#Elasticsearch的索引思路" class="headerlink" title="Elasticsearch的索引思路"></a>Elasticsearch的索引思路</h2><p><img src="/2017/08/24/Elasticsearch-权威指南阅读/index.png" alt="索引"></p>
 <blockquote>
 <p>将磁盘里的东西尽量搬进内存，减少磁盘随机读取次数(同时也利用磁盘顺序读特性)，结合各种奇技淫巧的压缩算法，用及其苛刻的态度使用内存。</p>
 </blockquote>
+<p><a href="http://blog.csdn.net/cyony/article/details/65437708?locationNum=9&amp;fps=1" target="_blank" rel="external">ES索引原理</a></p>
 <h2 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h2><p>映射对应传统数据库的表定义</p>
 <h3 id="type"><a href="#type" class="headerlink" title="type"></a>type</h3><p>string 类型域会被认为包含全文。就是说，它们的值在索引前，会通过 一个分析器，针对于这个域的查询在搜索前也会经过一个分析器。</p>
 <p>在5.x版本后text、keyword代表string。区别是text 分词,keyword不分词</p>
@@ -503,11 +504,15 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Drools</a>
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">Cassandra</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Drools</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,19 +528,15 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cassandra</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Cache</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">缓存</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Netty</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,10 +556,6 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">性能测试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ulimit</a>
               </li>
              
@@ -567,15 +564,19 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能测试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能调优</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">规则引擎</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">drools</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">性能调优</a>
               </li>
              
               <li class="article-tag-list-item">
