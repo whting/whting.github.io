@@ -6,19 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Guava Cache | Hexo</title>
+  <title>面向对象分析与设计框架 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="缓存在很多场景下都是相当有用的。例如，计算或检索一个值的代价很高，并且对同样的输入需要不止一次获取值的时候，就应当考虑使用缓存。 Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区别是ConcurrentMap会一直保存所有添加的元素，直到显式地移除。相对地，Guava Cache为了限制内存占用，通常都设定为自动回收元素。在某些场景下，尽管LoadingCach">
-<meta name="keywords" content="Cache,缓存">
+  <meta name="description" content="背景好像总是没有足够的时间来完成建模、 分析和设计工作，总是过早地进入到 编码阶段 以最少的投入，完成需求到编码的过渡 构造系统时需要弄明白的几个问题 谁是系统的用户(参与者)，他们想完成何种工作? 何为“现实世界”(问题域)对象，它们之间存在何种联系? 每个用例需要何种对象? 在每次用例交互，对象是如何协作的? 如何处理实时控制问题? 在具体细节上，实际上准备如何建立该系统?  问题答案   问">
+<meta name="keywords" content="面向对象分析,面向对象设">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Guava Cache">
-<meta property="og:url" content="http://yoursite.com/2017/08/10/Guava-Cache/index.html">
+<meta property="og:title" content="面向对象分析与设计框架">
+<meta property="og:url" content="http://yoursite.com/2018/01/07/面向对象分析与设计框架/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="缓存在很多场景下都是相当有用的。例如，计算或检索一个值的代价很高，并且对同样的输入需要不止一次获取值的时候，就应当考虑使用缓存。 Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区别是ConcurrentMap会一直保存所有添加的元素，直到显式地移除。相对地，Guava Cache为了限制内存占用，通常都设定为自动回收元素。在某些场景下，尽管LoadingCach">
-<meta property="og:updated_time" content="2017-08-10T02:23:46.000Z">
+<meta property="og:description" content="背景好像总是没有足够的时间来完成建模、 分析和设计工作，总是过早地进入到 编码阶段 以最少的投入，完成需求到编码的过渡 构造系统时需要弄明白的几个问题 谁是系统的用户(参与者)，他们想完成何种工作? 何为“现实世界”(问题域)对象，它们之间存在何种联系? 每个用例需要何种对象? 在每次用例交互，对象是如何协作的? 如何处理实时控制问题? 在具体细节上，实际上准备如何建立该系统?  问题答案   问">
+<meta property="og:image" content="http://static.zybuluo.com/1234567890/5yds8vt4d2mofl5dg8o8a1yg/image_1c2u8v37t16s71f42m21b7q1u6e19.png">
+<meta property="og:image" content="http://static.zybuluo.com/1234567890/n0m0io9os3tzntqxa72agspq/image_1c2r4j2mg9s4bkv139g7f110s6p.png">
+<meta property="og:image" content="http://static.zybuluo.com/1234567890/4e2vl1eugjjaeg629jw7vgy6/%E7%94%A8%E4%BE%8B%E8%A7%84%E7%BA%A6-%E8%BD%AC%E5%B8%90.doc">
+<meta property="og:image" content="http://static.zybuluo.com/1234567890/8ybbtlv5t0zsmu4zq11grib3/image_1c2uafq9r1fdanje8f01q1q1t5a26.png">
+<meta property="og:image" content="http://static.zybuluo.com/1234567890/914xp2jj3qbd3zvri1813b52/image_1c2uamvl0lbh1c7812pgpdose92j.png">
+<meta property="og:image" content="http://static.zybuluo.com/1234567890/69mnsufgebyc7hk1svy61kmg/image_1c2ubagif1ada1iom1f4flqh1nld3d.png">
+<meta property="og:image" content="http://static.zybuluo.com/1234567890/8mnw60mtyxmi3pg9180oh1d6/image_1c2ub88cg1lot1q0fkgeles8or30.png">
+<meta property="og:updated_time" content="2018-01-07T11:08:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Guava Cache">
-<meta name="twitter:description" content="缓存在很多场景下都是相当有用的。例如，计算或检索一个值的代价很高，并且对同样的输入需要不止一次获取值的时候，就应当考虑使用缓存。 Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区别是ConcurrentMap会一直保存所有添加的元素，直到显式地移除。相对地，Guava Cache为了限制内存占用，通常都设定为自动回收元素。在某些场景下，尽管LoadingCach">
+<meta name="twitter:title" content="面向对象分析与设计框架">
+<meta name="twitter:description" content="背景好像总是没有足够的时间来完成建模、 分析和设计工作，总是过早地进入到 编码阶段 以最少的投入，完成需求到编码的过渡 构造系统时需要弄明白的几个问题 谁是系统的用户(参与者)，他们想完成何种工作? 何为“现实世界”(问题域)对象，它们之间存在何种联系? 每个用例需要何种对象? 在每次用例交互，对象是如何协作的? 如何处理实时控制问题? 在具体细节上，实际上准备如何建立该系统?  问题答案   问">
+<meta name="twitter:image" content="http://static.zybuluo.com/1234567890/5yds8vt4d2mofl5dg8o8a1yg/image_1c2u8v37t16s71f42m21b7q1u6e19.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -160,65 +168,236 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Guava-Cache" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-面向对象分析与设计框架" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Guava Cache
+      面向对象分析与设计框架
     </h1>
   
 
         
-        <a href="/2017/08/10/Guava-Cache/" class="archive-article-date">
-  	<time datetime="2017-08-10T02:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
+        <a href="/2018/01/07/面向对象分析与设计框架/" class="archive-article-date">
+  	<time datetime="2018-01-07T11:06:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>缓存在很多场景下都是相当有用的。例如，计算或检索一个值的代价很高，并且对同样的输入需要不止一次获取值的时候，就应当考虑使用缓存。
-Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区别是ConcurrentMap会一直保存所有添加的元素，直到显式地移除。相对地，Guava Cache为了限制内存占用，通常都设定为自动回收元素。在某些场景下，尽管LoadingCache 不回收元素，它也是很有用的，因为它会自动加载缓存。
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CacheBuilder.newBuilder().refreshAfterWrite(refreshTime, TimeUnit.MINUTES).removalListener(removalListener).build(loader);</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="初始加载"><a href="#初始加载" class="headerlink" title="初始加载"></a>初始加载</h3><blockquote>
-<p>LoadingCache是附带CacheLoader构建而成的缓存实现。创建自己的CacheLoader通常只需要简单地实现V load(K key)</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>好像总是没有足够的时间来完成建模、 分析和设计工作，总是过早地进入到 编码阶段</p>
+<p>以最少的投入，完成需求到编码的过渡</p>
+<h2 id="构造系统时需要弄明白的几个问题"><a href="#构造系统时需要弄明白的几个问题" class="headerlink" title="构造系统时需要弄明白的几个问题"></a>构造系统时需要弄明白的几个问题</h2><ul>
+<li>谁是系统的用户(参与者)，他们想完成何种工作?</li>
+<li>何为“现实世界”(问题域)对象，它们之间存在何种联系?</li>
+<li>每个用例需要何种对象?</li>
+<li>在每次用例交互，对象是如何协作的?</li>
+<li>如何处理实时控制问题?</li>
+<li>在具体细节上，实际上准备如何建立该系统?</li>
+</ul>
+<h3 id="问题答案"><a href="#问题答案" class="headerlink" title="问题答案"></a>问题答案</h3><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>UML工具/技术</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户与用户活动?</td>
+<td>Use-case</td>
+</tr>
+<tr>
+<td>“现实世界”对象?</td>
+<td>高层类图</td>
+</tr>
+<tr>
+<td>为每个用例建立对象?</td>
+<td>Robustness分析</td>
+</tr>
+<tr>
+<td>对象交互?</td>
+<td>顺序图/协作图</td>
+</tr>
+<tr>
+<td>实时控制活动?</td>
+<td>状态图</td>
+</tr>
+<tr>
+<td>如何建立?</td>
+<td>低层类图</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4个阶段"><a href="#4个阶段" class="headerlink" title="4个阶段"></a>4个阶段</h2><p><img src="http://static.zybuluo.com/1234567890/5yds8vt4d2mofl5dg8o8a1yg/image_1c2u8v37t16s71f42m21b7q1u6e19.png" alt="image_1c2u8v37t16s71f42m21b7q1u6e19.png-198kB"></p>
+<h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><ul>
+<li>绘制高层类图</li>
+<li>可以做快速原型</li>
+<li>使用用例图确定用例</li>
+<li>把用例组织成组包</li>
+<li>给用例与域对象分配功能需求</li>
+</ul>
+<blockquote>
+<p>产出：用户界面原型、用例模型、领域模型、高层类图<br>里程碑：需求评审</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">LoadingCache&lt;Key, Graph&gt; graphs = CacheBuilder.newBuilder()</div><div class="line">        .expireAfterAccess(10, TimeUnit.MINUTES)</div><div class="line">        .build(</div><div class="line">            new CacheLoader&lt;Key, Graph&gt;() &#123;</div><div class="line">                public Graph load(Key key) &#123; // no checked exception</div><div class="line">                    return loadCache(key);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div></pre></td></tr></table></figure>
-<h3 id="Callable"><a href="#Callable" class="headerlink" title="Callable"></a>Callable</h3><blockquote>
-<p>不管有没有自动加载功能，都支持get(K,Callable<v>)方法。这个方法返回缓存中相应的值，或者用给定的Callable运算并把结果加入到缓存中。在整个加载方法完成前，缓存项相关的可观察状态都不会更改。这个方法简便地实现模式”如果有缓存则返回；否则运算、缓存、然后返回”。</v></p>
+<h3 id="初步设计"><a href="#初步设计" class="headerlink" title="初步设计"></a>初步设计</h3><ul>
+<li>编写用例描述</li>
+<li>执行健壮性分析</li>
+<li>完成类图更新</li>
+</ul>
+<blockquote>
+<p>产出：用例图、健壮性图、领域模型、类图<br>里程碑：初步设计评审</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// If the key wasn&apos;t in the &quot;easy to compute&quot; group, we need to</div><div class="line">    // do things the hard way.</div><div class="line">    cache.get(key, new Callable&lt;Key, Graph&gt;() &#123;</div><div class="line">        @Override</div><div class="line">        public Value call() throws AnyException &#123;</div><div class="line">            return doThingsTheHardWay(key);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
-<h3 id="缓存回收"><a href="#缓存回收" class="headerlink" title="缓存回收"></a>缓存回收</h3><blockquote>
-<p>我们几乎一定没有足够的内存缓存所有数据。你你必须决定：什么时候某个缓存项就不值得保留了？Guava Cache提供了三种基本的缓存回收方式：基于容量回收、定时回收和基于引用回收。</p>
+<h3 id="详细设计"><a href="#详细设计" class="headerlink" title="详细设计"></a>详细设计</h3><ul>
+<li>为对象分配行为——————————&gt;时序图</li>
+<li>通过添加详细信息来结束静态模型—————–&gt;完整的类图</li>
+<li>与小组成员一起来验证设计是否满足所有已确定的需求</li>
+</ul>
+<blockquote>
+<p>产出：时序图、完整的类图、(协作图、状态图)<br>里程碑：详细/关键设计评审</p>
 </blockquote>
-<h4 id="基于容量的回收（size-based-eviction）"><a href="#基于容量的回收（size-based-eviction）" class="headerlink" title="基于容量的回收（size-based eviction）"></a>基于容量的回收（size-based eviction）</h4><p>只需使用CacheBuilder.maximumSize(long)。缓存将尝试回收最近没有使用或总体上很少使用的缓存项。——警告：在缓存项的数目达到限定值之前，缓存就可能进行回收操作——通常来说，这种情况发生在缓存项的数目逼近限定值时。</p>
-<h4 id="定时回收（Timed-Eviction）"><a href="#定时回收（Timed-Eviction）" class="headerlink" title="定时回收（Timed Eviction）"></a>定时回收（Timed Eviction）</h4><p>CacheBuilder提供两种定时回收的方法：</p>
+<p>画时序图注意点：</p>
 <ul>
-<li><p>expireAfterAccess(long,TimeUnit)：<br>缓存项在给定时间内没有被读/写访问，则回收。请注意这种缓存的回收顺序和基于大小回收一样。</p>
+<li>确定那些需在对象间传送的消息</li>
+<li>绘制时序图，其中用例放在左边，时序图放置在右边。当发现属性与操作时，更新类图</li>
+<li>如果愿意，可以使用协作图来显示关键的类间事务</li>
+<li>如果愿意，可以使用状态图来显示实时行为</li>
+</ul>
+<h3 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h3><ul>
+<li>如果需要，在实现阶段绘制一些图，如部署图、构件图</li>
+<li>编写代码/生成代码</li>
+<li>执行单元测试与集成测试</li>
+<li>执行系统测试与用户验收测试</li>
+</ul>
+<blockquote>
+<p>产出：代码<br>里程碑：交付</p>
+</blockquote>
+<h2 id="领域建模"><a href="#领域建模" class="headerlink" title="领域建模"></a>领域建模</h2><ul>
+<li><p>领域概念：<br>问题域，一个包含现实世界事务与概念的领域,在用例建模中起一个术语表的作用</p>
 </li>
-<li><p>expireAfterWrite(long,TimeUnit)：<br>缓存项在给定时间内没有被写访问（创建或覆盖），则回收。如果认为缓存数据总是在固定时候后变得陈旧不可用，这种回收方式是可取的。</p>
+<li><p>领域建模目的<br>确定真实世界中的抽象,确定对象以及他们之间的关系</p>
+</li>
+<li><p>域类的最佳来源<br>高层级需求、详细需求描述、问题空间的专业知识</p>
 </li>
 </ul>
-<h3 id="显式清除"><a href="#显式清除" class="headerlink" title="显式清除"></a>显式清除</h3><p>任何时候，你都可以显式地清除缓存项，而不是等到它被回收</p>
-<ul>
-<li>个别清除：Cache.invalidate(key)</li>
-<li>批量清除：Cache.invalidateAll(keys)</li>
-<li>清除所有缓存项：Cache.invalidateAll()</li>
+<h3 id="领域建模任务"><a href="#领域建模任务" class="headerlink" title="领域建模任务"></a>领域建模任务</h3><p>领域建模的任务:找到代表现实世界中的事务与概念的对象</p>
+<h3 id="建模活动"><a href="#建模活动" class="headerlink" title="建模活动"></a>建模活动</h3><p>这些活动的执行没有固定必然的顺序，是不断重复细化的</p>
+<h4 id="识别类"><a href="#识别类" class="headerlink" title="识别类"></a>识别类</h4><ul>
+<li>类<br>一组具有相同属性、同样行为、共同关系和相同语义的对象</li>
+<li>属性<br>识别名词或名词短语:成为类或属性。注意:<code>所有</code>名词应该是属性</li>
+<li>方法<br>识别动词或动词短语:成为类的操作或关联</li>
 </ul>
-<h3 id="刷新"><a href="#刷新" class="headerlink" title="刷新"></a>刷新</h3><p>刷新和回收不太一样。正如LoadingCache.refresh(K)所声明，刷新表示为键加载新值，这个过程可以是异步的。在刷新操作进行时，缓存仍然可以向其他线程返回旧值，而不像回收操作，读缓存的线程必须等待新值加载完成。<br>如果刷新过程抛出异常，缓存将保留旧值，而异常会在记录到日志后被丢弃[swallowed]。</p>
-<p>重载CacheLoader.reload(K, V)可以扩展刷新时的行为，这个方法允许开发者在计算新值时使用旧的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">CacheLoader&lt;String, AppTypeInfo&gt; loader = new CacheLoader&lt;String, AppTypeInfo&gt;() &#123;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public AppTypeInfo load(String key) &#123;</div><div class="line">                return loadAppTypeInfo();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public ListenableFuture&lt;AppTypeInfo&gt; reload(final String key, AppTypeInfo appTypeInfo) &#123;</div><div class="line">                ListenableFutureTask&lt;AppTypeInfo&gt; task = ListenableFutureTask.create(new Callable&lt;AppTypeInfo&gt;() &#123;</div><div class="line"></div><div class="line">                    @Override</div><div class="line">                    public AppTypeInfo call() &#123;</div><div class="line">                        return loadAppTypeInfo();</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">                ExecutorService executor = Executors.newSingleThreadExecutor();</div><div class="line">                executor.execute(task);</div><div class="line">                return task;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;;</div></pre></td></tr></table></figure></p>
-<p>CacheBuilder.refreshAfterWrite(long,TimeUnit)可以为缓存增加自动定时刷新功能</p>
-<h3 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h3><p>CacheBuilder.recordStats()用来开启Guava Cache的统计功能。统计打开后，Cache.stats()方法会返回CacheStats对象以提供如下统计信息：</p>
-<ul>
-<li>hitRate()：缓存命中率；</li>
-<li>averageLoadPenalty()：加载新值的平均时间，单位为纳秒；</li>
-<li>evictionCount()：缓存项被回收的总数，不包括显式清除。</li>
+<h4 id="建立归纳关系"><a href="#建立归纳关系" class="headerlink" title="建立归纳关系"></a>建立归纳关系</h4><ul>
+<li>归纳关系：即继承、泛化</li>
+<li>这些关系在现实中一定要是真实的</li>
+<li>增强可复用性的手段之一</li>
 </ul>
-<p>此外，还有其他很多统计信息。这些统计信息对于调整缓存设置是至关重要的，在性能要求高的应用中我们建议密切关注这些数据。</p>
+<h4 id="建立类间关联"><a href="#建立类间关联" class="headerlink" title="建立类间关联"></a>建立类间关联</h4><ul>
+<li>类间关联是两个类的静态关系,不是动作</li>
+<li>泛化 聚合 组合 依赖</li>
+</ul>
+<h4 id="开发关联类"><a href="#开发关联类" class="headerlink" title="开发关联类"></a>开发关联类</h4><ul>
+<li><p>关联类拥有关联和类特性：一个关联类可以看作是一个拥有类特性的关联，或者可以看作是一个拥有关联特性的类。</p>
+</li>
+<li><p>它不仅仅是用于连接一些分类器，而是还定义了属于关联关系本身的特征，这些特征是只属于关联关系本身而不属于任何关联分类器的</p>
+</li>
+</ul>
+<h4 id="产出"><a href="#产出" class="headerlink" title="产出"></a>产出</h4><p>高层类图</p>
+<p><img src="http://static.zybuluo.com/1234567890/n0m0io9os3tzntqxa72agspq/image_1c2r4j2mg9s4bkv139g7f110s6p.png" alt="image_1c2r4j2mg9s4bkv139g7f110s6p.png-176.6kB"></p>
+<h2 id="用例建模"><a href="#用例建模" class="headerlink" title="用例建模"></a>用例建模</h2><ul>
+<li><p>用例<br>用于表示系统所提供的服务，它定义了系统是如何被参与者所使用的，它描述的是参与者为了使用系统所提供的某一完整功能而与系统之间发生的一段对话。</p>
+</li>
+<li><p>参与者<br>是指存在于被定义系统外部并与该系统发生交互的人或其他系统，他们代表的是系统的使用者或使用环境。</p>
+</li>
+</ul>
+<h3 id="用例建模目的"><a href="#用例建模目的" class="headerlink" title="用例建模目的"></a>用例建模目的</h3><p>用例图使我们对系统的功能有了一个整体的认知，我们可以知道有哪些参与者会与系统发生交互，每一个参与者需要系统为它提供什么样的服务。</p>
+<p>用例描述的是参与者与系统之间的对话，但是这个对话的细节并没有在用例图中表述出来，针对每一个用例我们可以用事件流来描述这一对话的细节内容。</p>
+<h3 id="用例图-Use-Case-Diagram"><a href="#用例图-Use-Case-Diagram" class="headerlink" title="用例图(Use Case Diagram)"></a>用例图(Use Case Diagram)</h3><blockquote>
+<p>确定系统中所包含的参与者、用例和两者之间的对应关系，用例图描述的是关于系统功能的一个概述。</p>
+</blockquote>
+<h4 id="寻找参与者"><a href="#寻找参与者" class="headerlink" title="寻找参与者"></a>寻找参与者</h4><ul>
+<li>系统开发完成之后，有哪些人会使用这个系统？</li>
+<li>系统需要从哪些人或其他系统中获得数据？</li>
+<li>系统会为哪些人或其他系统提供数据？</li>
+<li>系统会与哪些其他系统相关联？</li>
+<li>系统是由谁来维护和管理的？</li>
+</ul>
+<h4 id="确定用例"><a href="#确定用例" class="headerlink" title="确定用例"></a>确定用例</h4><ul>
+<li>参与者为什么要使用该系统？</li>
+<li>参与者是否会在系统中创建、修改、删除、访问、存储数据？如果是的话，参与者又是如何来完成这些操作的？</li>
+<li>参与者是否会将外部的某些事件通知给该系统？</li>
+<li>系统是否会将内部的某些事件通知该参与者？</li>
+</ul>
+<h3 id="用例规约-Use-Case-Specification"><a href="#用例规约-Use-Case-Specification" class="headerlink" title="用例规约(Use Case Specification)"></a>用例规约(Use Case Specification)</h3><blockquote>
+<p>针对每一个用例都应该有一个用例规约文档与之相对应，该文档描述用例的细节内容。</p>
+</blockquote>
+<ul>
+<li><p>简要说明 (Brief Description)<br>简要介绍该用例的作用和目的。</p>
+</li>
+<li><p>事件流 (Flow of Event)<br>包括基本流和备选流，事件流应该表示出所有的场景。</p>
+</li>
+<li><p>用例场景 (Use-Case Scenario)<br>包括成功场景和失败场景，场景主要是由基本流和备选流组合而成的。</p>
+</li>
+<li><p>特殊需求 (Special Requirement)<br>描述与该用例相关的非功能性需求（包括性能、可靠性、可用性和可扩展性等）和设计约束（所使用的操作系统、开发工具等）。</p>
+</li>
+<li><p>前置条件 (Pre-Condition)<br>执行用例之前系统必须所处的状态。</p>
+</li>
+<li><p>后置条件 (Post-Condition)<br>用例执行完毕后系统可能处于的一组状态。</p>
+</li>
+</ul>
+<p><img src="http://static.zybuluo.com/1234567890/4e2vl1eugjjaeg629jw7vgy6/%E7%94%A8%E4%BE%8B%E8%A7%84%E7%BA%A6-%E8%BD%AC%E5%B8%90.doc" alt="用例规约-转帐.doc-54.5kB"></p>
+<p><a href="https://www.ibm.com/developerworks/cn/rational/r-usecase-atm/index.html" target="_blank" rel="external">用例建模参考</a></p>
+<h2 id="健壮性分析"><a href="#健壮性分析" class="headerlink" title="健壮性分析"></a>健壮性分析</h2><blockquote>
+<p>我们通过健壮性图进行健壮性分析:先绘制健壮性图，仔细检查用例文本，检查每一个 句子，然后根据句子的描述绘制出参与者、边界对象、实体对象和控制器以及图中不同元素间的关系。然后评审健壮性图，通过观察用例文本和图是否‘图文一致’ 来发现问题，修改用例文本，当然也要修改静态模型。在这个阶段，因该把一些关键属性添加到类图中。</p>
+</blockquote>
+<ul>
+<li><p>边界对象<br>参与者使用该对象与系统进 行交流，窗口、屏幕、对话框、菜单， 从原型、用例文本中识别</p>
+</li>
+<li><p>实体对象<br>来自域模型;映射到数据表; 存取数据</p>
+</li>
+<li><p>控制对象<br>该对象在边界对象与实体对象中扮演粘合剂;也称为控制体，体系 应用程序的逻辑;体现业务规则及策略; 在实现的时候可能不会是独立的类</p>
+</li>
+</ul>
+<h3 id="健壮性分析的目的"><a href="#健壮性分析的目的" class="headerlink" title="健壮性分析的目的"></a>健壮性分析的目的</h3><ul>
+<li>检查用例的正确性及完整性</li>
+<li>为MVC模型分离对象</li>
+<li>为用例与设计之间填补语义缺口</li>
+</ul>
+<h3 id="健壮性分析的产出"><a href="#健壮性分析的产出" class="headerlink" title="健壮性分析的产出"></a>健壮性分析的产出</h3><ul>
+<li>健壮性图</li>
+<li>具有详细属性的类图</li>
+</ul>
+<h3 id="健壮性图的规则"><a href="#健壮性图的规则" class="headerlink" title="健壮性图的规则"></a>健壮性图的规则</h3><p><img src="http://static.zybuluo.com/1234567890/8ybbtlv5t0zsmu4zq11grib3/image_1c2uafq9r1fdanje8f01q1q1t5a26.png" alt="image_1c2uafq9r1fdanje8f01q1q1t5a26.png-79kB"></p>
+<ul>
+<li>动作者只能与边界对象交谈</li>
+<li>边界对象只能与控制体和动作者交 谈</li>
+<li>实体对象只能与控制体进行交谈</li>
+<li>控制体即能跟控制对象交谈，也能 跟边界对象交谈，不能跟动作者交谈</li>
+</ul>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><p>用例:进行交易</p>
+<ul>
+<li>基本进程<br>助理交易员使用债券交易输入窗口来输入本交易的初值，系统在处理该交易前验证 公共交易值与债券特殊值的有效性(例如 确定证券利率是合理的)</li>
+<li>可替换过程<br>  如果验证失败，则通知用户，高亮显示错 误值，然后从用户处获得新值</li>
+</ul>
+<h4 id="健壮性图"><a href="#健壮性图" class="headerlink" title="健壮性图"></a>健壮性图</h4><p><img src="http://static.zybuluo.com/1234567890/914xp2jj3qbd3zvri1813b52/image_1c2uamvl0lbh1c7812pgpdose92j.png" alt="image_1c2uamvl0lbh1c7812pgpdose92j.png-130.3kB"></p>
+<h2 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h2><blockquote>
+<p>动态模型的核心，描述了系统在运行时间的行为，包括系统如何完 成这些行为</p>
+</blockquote>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul>
+<li>在边界、控制、实体对象中分配行为</li>
+<li>显示运行期间各个对象之间的交互过程</li>
+<li>确定类间的操作分配</li>
+</ul>
+<h3 id="产出-1"><a href="#产出-1" class="headerlink" title="产出"></a>产出</h3><ul>
+<li>动态模型</li>
+<li>静态模型</li>
+</ul>
+<h3 id="画时序图步骤"><a href="#画时序图步骤" class="headerlink" title="画时序图步骤"></a>画时序图步骤</h3><p>1、将用例描述复制到时序图的左 边空白处<br>2、添加实体对象<br>3、添加边界对象与参与者<br>4、设法解决控制体，一次一个， 然后弄清楚如何在协作对象中分配 行为</p>
+<h3 id="时序图要素"><a href="#时序图要素" class="headerlink" title="时序图要素"></a>时序图要素</h3><p><img src="http://static.zybuluo.com/1234567890/69mnsufgebyc7hk1svy61kmg/image_1c2ubagif1ada1iom1f4flqh1nld3d.png" alt="image_1c2ubagif1ada1iom1f4flqh1nld3d.png-116.5kB"></p>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><p><img src="http://static.zybuluo.com/1234567890/8mnw60mtyxmi3pg9180oh1d6/image_1c2ub88cg1lot1q0fkgeles8or30.png" alt="image_1c2ub88cg1lot1q0fkgeles8or30.png-247.4kB"></p>
 
       
 
@@ -263,11 +442,11 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Cache</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">面向对象分析</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">缓存</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">面向对象设</a>
         		</li>
       		
 		</ul>
@@ -323,7 +502,7 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/10/Guava-Cache/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/01/07/面向对象分析与设计框架/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -337,18 +516,9 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
   
 <nav id="article-nav">
   
-    <a href="/2017/08/24/Elasticsearch-权威指南阅读/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Elasticsearch: 权威指南阅读
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/09/GenericObjectPool分析-通用对象池技术/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">GenericObjectPool分析(通用对象池技术)</div>
+    <a href="/2017/12/10/Drools语法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Drools语法</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -375,7 +545,7 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#初始加载"><span class="toc-number">1.</span> <span class="toc-text">初始加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Callable"><span class="toc-number">2.</span> <span class="toc-text">Callable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存回收"><span class="toc-number">3.</span> <span class="toc-text">缓存回收</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于容量的回收（size-based-eviction）"><span class="toc-number">3.1.</span> <span class="toc-text">基于容量的回收（size-based eviction）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定时回收（Timed-Eviction）"><span class="toc-number">3.2.</span> <span class="toc-text">定时回收（Timed Eviction）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显式清除"><span class="toc-number">4.</span> <span class="toc-text">显式清除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#刷新"><span class="toc-number">5.</span> <span class="toc-text">刷新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#统计"><span class="toc-number">6.</span> <span class="toc-text">统计</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造系统时需要弄明白的几个问题"><span class="toc-number">2.</span> <span class="toc-text">构造系统时需要弄明白的几个问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题答案"><span class="toc-number">2.1.</span> <span class="toc-text">问题答案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4个阶段"><span class="toc-number">3.</span> <span class="toc-text">4个阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#需求分析"><span class="toc-number">3.1.</span> <span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初步设计"><span class="toc-number">3.2.</span> <span class="toc-text">初步设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#详细设计"><span class="toc-number">3.3.</span> <span class="toc-text">详细设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编码实现"><span class="toc-number">3.4.</span> <span class="toc-text">编码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#领域建模"><span class="toc-number">4.</span> <span class="toc-text">领域建模</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#领域建模任务"><span class="toc-number">4.1.</span> <span class="toc-text">领域建模任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建模活动"><span class="toc-number">4.2.</span> <span class="toc-text">建模活动</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#识别类"><span class="toc-number">4.2.1.</span> <span class="toc-text">识别类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#建立归纳关系"><span class="toc-number">4.2.2.</span> <span class="toc-text">建立归纳关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#建立类间关联"><span class="toc-number">4.2.3.</span> <span class="toc-text">建立类间关联</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开发关联类"><span class="toc-number">4.2.4.</span> <span class="toc-text">开发关联类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#产出"><span class="toc-number">4.2.5.</span> <span class="toc-text">产出</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用例建模"><span class="toc-number">5.</span> <span class="toc-text">用例建模</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用例建模目的"><span class="toc-number">5.1.</span> <span class="toc-text">用例建模目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用例图-Use-Case-Diagram"><span class="toc-number">5.2.</span> <span class="toc-text">用例图(Use Case Diagram)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#寻找参与者"><span class="toc-number">5.2.1.</span> <span class="toc-text">寻找参与者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#确定用例"><span class="toc-number">5.2.2.</span> <span class="toc-text">确定用例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用例规约-Use-Case-Specification"><span class="toc-number">5.3.</span> <span class="toc-text">用例规约(Use Case Specification)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#健壮性分析"><span class="toc-number">6.</span> <span class="toc-text">健壮性分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#健壮性分析的目的"><span class="toc-number">6.1.</span> <span class="toc-text">健壮性分析的目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#健壮性分析的产出"><span class="toc-number">6.2.</span> <span class="toc-text">健壮性分析的产出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#健壮性图的规则"><span class="toc-number">6.3.</span> <span class="toc-text">健壮性图的规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">6.4.</span> <span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#需求"><span class="toc-number">6.4.1.</span> <span class="toc-text">需求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#健壮性图"><span class="toc-number">6.4.2.</span> <span class="toc-text">健壮性图</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#时序图"><span class="toc-number">7.</span> <span class="toc-text">时序图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目的"><span class="toc-number">7.1.</span> <span class="toc-text">目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#产出-1"><span class="toc-number">7.2.</span> <span class="toc-text">产出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#画时序图步骤"><span class="toc-number">7.3.</span> <span class="toc-text">画时序图步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#时序图要素"><span class="toc-number">7.4.</span> <span class="toc-text">时序图要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例-1"><span class="toc-number">7.5.</span> <span class="toc-text">实例</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -391,7 +561,7 @@ Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区�
   
 
   
-  <div id="SOHUCS" sid="Guava-Cache" ></div> 
+  <div id="SOHUCS" sid="面向对象分析与设计框架" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cyt94q09g"; 

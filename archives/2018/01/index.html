@@ -6,19 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Guava Cache | Hexo</title>
+  <title>Archives: 2018/1 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="缓存在很多场景下都是相当有用的。例如，计算或检索一个值的代价很高，并且对同样的输入需要不止一次获取值的时候，就应当考虑使用缓存。 Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区别是ConcurrentMap会一直保存所有添加的元素，直到显式地移除。相对地，Guava Cache为了限制内存占用，通常都设定为自动回收元素。在某些场景下，尽管LoadingCach">
-<meta name="keywords" content="Cache,缓存">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Guava Cache">
-<meta property="og:url" content="http://yoursite.com/2017/08/10/Guava-Cache/index.html">
+  <meta name="description" content="十年磨一剑，不露锋芒">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/archives/2018/01/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="缓存在很多场景下都是相当有用的。例如，计算或检索一个值的代价很高，并且对同样的输入需要不止一次获取值的时候，就应当考虑使用缓存。 Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区别是ConcurrentMap会一直保存所有添加的元素，直到显式地移除。相对地，Guava Cache为了限制内存占用，通常都设定为自动回收元素。在某些场景下，尽管LoadingCach">
-<meta property="og:updated_time" content="2017-08-10T02:23:46.000Z">
+<meta property="og:description" content="十年磨一剑，不露锋芒">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Guava Cache">
-<meta name="twitter:description" content="缓存在很多场景下都是相当有用的。例如，计算或检索一个值的代价很高，并且对同样的输入需要不止一次获取值的时候，就应当考虑使用缓存。 Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区别是ConcurrentMap会一直保存所有添加的元素，直到显式地移除。相对地，Guava Cache为了限制内存占用，通常都设定为自动回收元素。在某些场景下，尽管LoadingCach">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="十年磨一剑，不露锋芒">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -160,248 +158,64 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Guava-Cache" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Guava Cache
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/01/07/面向对象分析与设计框架/" class="archive-article-date">
+  	<time datetime="2018-01-07T11:06:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/01/07/面向对象分析与设计框架/">面向对象分析与设计框架</a>
     </h1>
   
 
-        
-        <a href="/2017/08/10/Guava-Cache/" class="archive-article-date">
-  	<time datetime="2017-08-10T02:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre><code>缓存在很多场景下都是相当有用的。例如，计算或检索一个值的代价很高，并且对同样的输入需要不止一次获取值的时候，就应当考虑使用缓存。
-Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区别是ConcurrentMap会一直保存所有添加的元素，直到显式地移除。相对地，Guava Cache为了限制内存占用，通常都设定为自动回收元素。在某些场景下，尽管LoadingCache 不回收元素，它也是很有用的，因为它会自动加载缓存。
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CacheBuilder.newBuilder().refreshAfterWrite(refreshTime, TimeUnit.MINUTES).removalListener(removalListener).build(loader);</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="初始加载"><a href="#初始加载" class="headerlink" title="初始加载"></a>初始加载</h3><blockquote>
-<p>LoadingCache是附带CacheLoader构建而成的缓存实现。创建自己的CacheLoader通常只需要简单地实现V load(K key)</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">LoadingCache&lt;Key, Graph&gt; graphs = CacheBuilder.newBuilder()</div><div class="line">        .expireAfterAccess(10, TimeUnit.MINUTES)</div><div class="line">        .build(</div><div class="line">            new CacheLoader&lt;Key, Graph&gt;() &#123;</div><div class="line">                public Graph load(Key key) &#123; // no checked exception</div><div class="line">                    return loadCache(key);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div></pre></td></tr></table></figure>
-<h3 id="Callable"><a href="#Callable" class="headerlink" title="Callable"></a>Callable</h3><blockquote>
-<p>不管有没有自动加载功能，都支持get(K,Callable<v>)方法。这个方法返回缓存中相应的值，或者用给定的Callable运算并把结果加入到缓存中。在整个加载方法完成前，缓存项相关的可观察状态都不会更改。这个方法简便地实现模式”如果有缓存则返回；否则运算、缓存、然后返回”。</v></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// If the key wasn&apos;t in the &quot;easy to compute&quot; group, we need to</div><div class="line">    // do things the hard way.</div><div class="line">    cache.get(key, new Callable&lt;Key, Graph&gt;() &#123;</div><div class="line">        @Override</div><div class="line">        public Value call() throws AnyException &#123;</div><div class="line">            return doThingsTheHardWay(key);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
-<h3 id="缓存回收"><a href="#缓存回收" class="headerlink" title="缓存回收"></a>缓存回收</h3><blockquote>
-<p>我们几乎一定没有足够的内存缓存所有数据。你你必须决定：什么时候某个缓存项就不值得保留了？Guava Cache提供了三种基本的缓存回收方式：基于容量回收、定时回收和基于引用回收。</p>
-</blockquote>
-<h4 id="基于容量的回收（size-based-eviction）"><a href="#基于容量的回收（size-based-eviction）" class="headerlink" title="基于容量的回收（size-based eviction）"></a>基于容量的回收（size-based eviction）</h4><p>只需使用CacheBuilder.maximumSize(long)。缓存将尝试回收最近没有使用或总体上很少使用的缓存项。——警告：在缓存项的数目达到限定值之前，缓存就可能进行回收操作——通常来说，这种情况发生在缓存项的数目逼近限定值时。</p>
-<h4 id="定时回收（Timed-Eviction）"><a href="#定时回收（Timed-Eviction）" class="headerlink" title="定时回收（Timed Eviction）"></a>定时回收（Timed Eviction）</h4><p>CacheBuilder提供两种定时回收的方法：</p>
-<ul>
-<li><p>expireAfterAccess(long,TimeUnit)：<br>缓存项在给定时间内没有被读/写访问，则回收。请注意这种缓存的回收顺序和基于大小回收一样。</p>
-</li>
-<li><p>expireAfterWrite(long,TimeUnit)：<br>缓存项在给定时间内没有被写访问（创建或覆盖），则回收。如果认为缓存数据总是在固定时候后变得陈旧不可用，这种回收方式是可取的。</p>
-</li>
-</ul>
-<h3 id="显式清除"><a href="#显式清除" class="headerlink" title="显式清除"></a>显式清除</h3><p>任何时候，你都可以显式地清除缓存项，而不是等到它被回收</p>
-<ul>
-<li>个别清除：Cache.invalidate(key)</li>
-<li>批量清除：Cache.invalidateAll(keys)</li>
-<li>清除所有缓存项：Cache.invalidateAll()</li>
-</ul>
-<h3 id="刷新"><a href="#刷新" class="headerlink" title="刷新"></a>刷新</h3><p>刷新和回收不太一样。正如LoadingCache.refresh(K)所声明，刷新表示为键加载新值，这个过程可以是异步的。在刷新操作进行时，缓存仍然可以向其他线程返回旧值，而不像回收操作，读缓存的线程必须等待新值加载完成。<br>如果刷新过程抛出异常，缓存将保留旧值，而异常会在记录到日志后被丢弃[swallowed]。</p>
-<p>重载CacheLoader.reload(K, V)可以扩展刷新时的行为，这个方法允许开发者在计算新值时使用旧的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">CacheLoader&lt;String, AppTypeInfo&gt; loader = new CacheLoader&lt;String, AppTypeInfo&gt;() &#123;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public AppTypeInfo load(String key) &#123;</div><div class="line">                return loadAppTypeInfo();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public ListenableFuture&lt;AppTypeInfo&gt; reload(final String key, AppTypeInfo appTypeInfo) &#123;</div><div class="line">                ListenableFutureTask&lt;AppTypeInfo&gt; task = ListenableFutureTask.create(new Callable&lt;AppTypeInfo&gt;() &#123;</div><div class="line"></div><div class="line">                    @Override</div><div class="line">                    public AppTypeInfo call() &#123;</div><div class="line">                        return loadAppTypeInfo();</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">                ExecutorService executor = Executors.newSingleThreadExecutor();</div><div class="line">                executor.execute(task);</div><div class="line">                return task;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;;</div></pre></td></tr></table></figure></p>
-<p>CacheBuilder.refreshAfterWrite(long,TimeUnit)可以为缓存增加自动定时刷新功能</p>
-<h3 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h3><p>CacheBuilder.recordStats()用来开启Guava Cache的统计功能。统计打开后，Cache.stats()方法会返回CacheStats对象以提供如下统计信息：</p>
-<ul>
-<li>hitRate()：缓存命中率；</li>
-<li>averageLoadPenalty()：加载新值的平均时间，单位为纳秒；</li>
-<li>evictionCount()：缓存项被回收的总数，不包括显式清除。</li>
-</ul>
-<p>此外，还有其他很多统计信息。这些统计信息对于调整缓存设置是至关重要的，在性能要求高的应用中我们建议密切关注这些数据。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://static.zybuluo.com/1234567890/2tbovtv5q0jgvgsb003e3g0a/image_1bmjmgqun1korrch1t311r1vhlr2g.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://static.zybuluo.com/1234567890/koi9lkyw5k4y27hxlv9ng3yp/image_1bmjmgbkr19babd9h01difdnl23.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Cache</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">面向对象分析</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">缓存</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">面向对象设</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/10/Guava-Cache/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/08/24/Elasticsearch-权威指南阅读/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Elasticsearch: 权威指南阅读
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/08/09/GenericObjectPool分析-通用对象池技术/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">GenericObjectPool分析(通用对象池技术)</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#初始加载"><span class="toc-number">1.</span> <span class="toc-text">初始加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Callable"><span class="toc-number">2.</span> <span class="toc-text">Callable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存回收"><span class="toc-number">3.</span> <span class="toc-text">缓存回收</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于容量的回收（size-based-eviction）"><span class="toc-number">3.1.</span> <span class="toc-text">基于容量的回收（size-based eviction）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定时回收（Timed-Eviction）"><span class="toc-number">3.2.</span> <span class="toc-text">定时回收（Timed Eviction）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显式清除"><span class="toc-number">4.</span> <span class="toc-text">显式清除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#刷新"><span class="toc-number">5.</span> <span class="toc-text">刷新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#统计"><span class="toc-number">6.</span> <span class="toc-text">统计</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="Guava-Cache" ></div> 
-<script type="text/javascript"> 
-(function(){ 
-var appid = "cyt94q09g"; 
-var conf = "prod_d9beaec89e827e0a93197e3abf62faba"; 
-var width = window.innerWidth || document.documentElement.clientWidth; 
-if (width < 960) { 
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
-  
-
-  
+    
 
 
           </div>
@@ -424,8 +238,8 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
